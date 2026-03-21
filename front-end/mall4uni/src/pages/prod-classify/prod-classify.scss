@@ -1,5 +1,5 @@
 .container {
-  background: #f4f4f4;
+  background: #F4F7F4;
   min-height: 100vh;
   padding: 7px;
 }
@@ -18,15 +18,22 @@
 .prod-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  // justify-content: space-between;
+  justify-content: flex-start;
+  row-gap: 24rpx;    /* 上下间距 */
+  column-gap: 16rpx; /* 左右间距 */
 }
-:deep(.prod-items) {
-  display: inline-block;
-  width: 345rpx !important;
-  &:nth-child(2n) {
-    margin-left: 30rpx;
-  }
+/* 每个商品卡片占一格，两列排布 */
+.prod-cell {
+  width: calc(50% - 16rpx);  /* 两列，中间预留 column-gap 的空间 */
 }
+// :deep(.prod-items) {
+//   display: inline-block;
+//   width: 345rpx !important;
+//   &:nth-child(2n) {
+//     margin-left: 30rpx;
+//   }
+// }
 /* 空 */
 .empty {
   display: block;

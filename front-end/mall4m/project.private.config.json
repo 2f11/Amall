@@ -1,18 +1,24 @@
 {
-  "setting": {},
-  "condition": {
-    "miniprogram": {
-      "list": [
-        {
-          "name": "登录",
-          "pathName": "pages/login/login",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        }
-      ]
-    }
+  "setting": {
+    "urlCheck": false,
+    "coverView": true,
+    "lazyloadPlaceholderEnable": false,
+    "skylineRenderEnable": false,
+    "preloadBackgroundData": false,
+    "autoAudits": false,
+    "useApiHook": true,
+    "showShadowRootInWxmlPanel": true,
+    "useStaticServer": false,
+    "useLanDebug": false,
+    "showES6CompileOption": false,
+    "compileHotReLoad": true,
+    "checkInvalidKey": true,
+    "ignoreDevUnusedFiles": true,
+    "bigPackageSizeSupport": false,
+    "useIsolateContext": false
   },
+  "condition": {},
   "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
-  "projectname": "mall4m"
+  "projectname": "mall4m",
+  "libVersion": "3.14.3"
 }

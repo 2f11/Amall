@@ -1,5 +1,6 @@
+@use '@/uni.scss' as *;
 .container {
-  background: #f4f4f4;
+  background: $bg-color;
 }
 .order-detail {
   margin-bottom: 120rpx;
@@ -171,7 +172,7 @@
     }
     .item.payment {
       border-top: 2rpx solid #f1f1f1;
-      color: #eb2444;
+      color:  $primary-color;
       padding-top: 30rpx;
     }
   }
@@ -206,7 +207,7 @@
     .buy-again {
       font-size: 26rpx;
       color: #fff;
-      background: #eb2444;
+      background:  $primary-color;
       border-radius: 50rpx;
       padding: 10rpx 20rpx;
       margin-right: 20rpx;

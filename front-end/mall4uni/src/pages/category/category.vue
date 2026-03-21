@@ -11,7 +11,7 @@
           class="search-img"
         />
         <text class="sear-input">
-          搜索您想要的商品
+          搜索您想要的农品/种子
         </text>
       </view>
     </view>
@@ -39,7 +39,7 @@
           v-if="!categoryList.length"
           class="ca-empty"
         >
-          {{ categoryList && categoryList.length ? '该分类下暂无商品' : '暂无商品' }}
+          {{ categoryList && categoryList.length ? '该分类下暂无农品' : '暂无农品' }}
         </view>
       </scroll-view>
       <!-- 左侧菜单end -->
@@ -89,6 +89,44 @@
         >
           该分类下暂无子分类~
         </view>
+        <!-- 当前分类下的部分商品列表 -->
+        <view class="cate-prod-list">
+          <view
+            v-if="prodList.length"
+            class="cate-prod-wrap"
+          >
+            <view
+              v-for="(prod, idx) in prodList"
+              :key="idx"
+              class="cate-prod-item"
+              :data-prodid="prod.prodId"
+              @tap="toProdPage"
+            >
+              <image
+                :src="util.checkFileUrl(prod.pic)"
+                class="cate-prod-img"
+                mode="aspectFill"
+              />
+              <view class="cate-prod-info">
+                <view class="cate-prod-name">
+                  {{ prod.prodName }}
+                </view>
+                <view v-if="prod.brief" class="cate-prod-brief">
+                  {{ prod.brief }}
+                </view>
+                <view class="cate-prod-price">
+                  {{ prod.price }}
+                </view>
+              </view>
+            </view>
+          </view>
+          <view
+            v-else
+            class="cont-item empty"
+          >
+            该分类下暂无农品~
+          </view>
+        </view>
       </scroll-view>
       <!-- 右侧内容end -->
     </view>
@@ -101,6 +139,7 @@ const categoryList = ref([])
 const subCategoryList = ref([])
 const categoryImg = ref('')
 const parentId = ref('')
+const prodList = ref([])
 /**
  * 生命周期函数--监听页面加载
  */
@@ -154,6 +193,30 @@ const getProdList = (categoryId) => {
     .then(({ data }) => {
       subCategoryList.value = data
     })
+  // 加载当前分类下的商品列表（取前 10 条）
+  http.request({
+    url: '/prod/pageProd',
+    method: 'GET',
+    data: {
+      categoryId,
+      current: 1,
+      size: 10,
+      sort: 0,
+      isAllProdType: true
+    }
+  })
+    .then(({ data }) => {
+      prodList.value = data.records || []
+    })
+}
+
+const toProdPage = (e) => {
+  const prodid = e.currentTarget.dataset.prodid
+  if (prodid) {
+    uni.navigateTo({
+      url: '/pages/prod/prod?prodid=' + prodid
+    })
+  }
 }
 
 /**
@@ -169,5 +232,5 @@ const toCatePage = (e) => {
 </script>
 
 <style scoped lang="scss">
-@import "./category.scss";
+@use "./category.scss";
 </style>

@@ -1,0 +1,55 @@
+.site-content {
+  background: #f3f6f2;
+}
+
+.card-content-h {
+  .avue-crud__header {
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #ebeef5;
+  }
+
+  .el-table {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .el-table th.el-table__cell {
+    background: #f4faf4;
+    color: #303133;
+    font-weight: 600;
+  }
+
+  .el-table__body tr:hover > td.el-table__cell {
+    background: #eaf4ea !important;
+  }
+
+  .el-pagination.is-background .el-pager li:not(.is-disabled).is-active {
+    background-color: var(--el-color-primary);
+  }
+
+  .el-button--primary {
+    --el-button-bg-color: var(--el-color-primary);
+    --el-button-border-color: var(--el-color-primary);
+    --el-button-hover-bg-color: #256628;
+    --el-button-hover-border-color: #256628;
+  }
+}
+
+.el-dialog {
+  border-radius: 12px;
+  overflow: hidden;
+}
+.el-dialog__header {
+  padding: 14px 20px;
+  border-bottom: 1px solid #ebeef5;
+  color: #1a1a2e;
+  font-weight: 600;
+}
+.el-dialog__body {
+  padding: 20px;
+}
+.el-dialog__footer {
+  padding: 12px 20px 16px;
+  border-top: 1px solid #ebeef5;
+}

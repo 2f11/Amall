@@ -18,6 +18,13 @@ const util = {
     if (!content) {
       return
     }
+    const baseUrl = import.meta.env.VITE_APP_RESOURCES_URL
+    // 去掉 src 里前面的空格
+    content = content.replace(/src="\s+([^"]*)"/gi, 'src="$1"')
+    // 可选：相对路径补上前缀
+    content = content.replace(/src="(?!https?:\/\/)([^"]+)"/gi, (_, p1) => {
+      return `src="${baseUrl}${p1.trim()}"`
+    })
     content = content.replace(/<p/gi, '<p style="max-width:100% !important;word-wrap:break-word;word-break:break-word;" ')
     content = content.replace(/<img/gi, '<img style="max-width:100% !important;height:auto !important;margin:0;display:flex;" ')
     content = content.replace(/style="/gi, 'style="max-width:100% !important;table-layout:fixed;word-wrap:break-word;word-break:break-word;')
@@ -50,11 +57,11 @@ const util = {
    */
   checkFileUrl: (fileUrl) => {
     // 防止 fileUrl 为null时 indexOf() 方法失效报错
-    const url = fileUrl || ''
+    const url = (fileUrl || '').trim()
     const baseUrl = import.meta.env.VITE_APP_RESOURCES_URL
     // 判断 fileUrl 中是否已存在基础路径
     const check = url.indexOf(baseUrl) !== -1
-    if (check || !fileUrl) {
+    if (check || url.startsWith('http://') || url.startsWith('https://')) {
       return url
     } else {
       return baseUrl + url

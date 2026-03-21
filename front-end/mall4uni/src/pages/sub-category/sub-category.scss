@@ -1,5 +1,6 @@
+@use '@/uni.scss' as Uni;
 .container {
-  background: #f4f4f4;
+  background:  Uni.$bg-color;
 }
 .category-tit {
   width: 100%;
@@ -22,8 +23,8 @@
   height: calc(100vh - 100rpx);
 }
 .on {
-  border-bottom: 4rpx solid #e43130;
-  color: #e43130;
+  border-bottom: 4rpx solid Uni.$primary-color;
+  color: Uni.$primary-color;
 }
 ::-webkit-scrollbar {
   width: 0;
@@ -39,7 +40,7 @@
   background: #fff;
   padding-bottom: 20rpx;
   box-sizing: border-box;
-  box-shadow: 0rpx 6rpx 8rpx rgba(58,134,185,0.2);
+  box-shadow: 0rpx 6rpx 8rpx Uni.$shadow-color;
   &:nth-child(2n-1) {
     margin: 20rpx 10rpx 10rpx 20rpx;
   }
@@ -79,7 +80,7 @@
       .hotprod-price {
         display: inline;
         font-size: 26rpx;
-        color: #eb2444;
+        color: Uni.$price-color;
       }
       .basket-img {
         width: 50rpx;

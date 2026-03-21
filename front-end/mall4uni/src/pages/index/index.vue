@@ -56,7 +56,7 @@
           @tap="toClassifyPage"
         >
           <image src="@/static/images/icon/newProd.png" />
-          <text>新品推荐</text>
+          <text>新品种子</text>
         </view>
         <view
           class="item"
@@ -64,7 +64,7 @@
           @tap="toClassifyPage"
         >
           <image src="@/static/images/icon/timePrice.png" />
-          <text>限时特惠</text>
+          <text>农资特惠</text>
         </view>
         <view
           class="item"
@@ -72,14 +72,14 @@
           @tap="toClassifyPage"
         >
           <image src="@/static/images/icon/neweveryday.png" />
-          <text>每日疯抢</text>
+          <text>当季热销</text>
         </view>
         <view
           class="item"
           @tap="toCouponCenter"
         >
           <image src="@/static/images/icon/newprods.png" />
-          <text>领优惠券</text>
+          <text>领优惠</text>
         </view>
       </view>
 
@@ -161,15 +161,7 @@
                     {{ prod.prodName }}
                   </view>
                   <view class="price">
-                    <text class="symbol">
-                      ￥
-                    </text>
-                    <text class="big-num">
-                      {{ wxs.parsePrice(prod.price)[0] }}
-                    </text>
-                    <text class="small-num">
-                      .{{ wxs.parsePrice(prod.price)[1] }}
-                    </text>
+                    <text class="symbol">￥</text><text class="big-num">{{ wxs.parsePrice(prod.price)[0] }}</text><text class="small-num">.{{ wxs.parsePrice(prod.price)[1] }}</text>
                   </view>
                 </view>
               </view>
@@ -222,15 +214,7 @@
                   </view>
                   <view class="prod-text-info">
                     <view class="price">
-                      <text class="symbol">
-                        ￥
-                      </text>
-                      <text class="big-num">
-                        {{ wxs.parsePrice(prod.price)[0] }}
-                      </text>
-                      <text class="small-num">
-                        .{{ wxs.parsePrice(prod.price)[1] }}
-                      </text>
+                      <text class="symbol">￥</text><text class="big-num">{{ wxs.parsePrice(prod.price)[0] }}</text><text class="small-num">.{{ wxs.parsePrice(prod.price)[1] }}</text>
                     </view>
                     <image
                       src="@/static/images/tabbar/basket-sel.png"
@@ -276,15 +260,7 @@
                   </view>
                   <view class="b-cart">
                     <view class="price">
-                      <text class="symbol">
-                        ￥
-                      </text>
-                      <text class="big-num">
-                        {{ wxs.parsePrice(prod.price)[0] }}
-                      </text>
-                      <text class="small-num">
-                        .{{ wxs.parsePrice(prod.price)[1] }}
-                      </text>
+                      <text class="symbol">￥</text><text class="big-num">{{ wxs.parsePrice(prod.price)[0] }}</text><text class="small-num">.{{ wxs.parsePrice(prod.price)[1] }}</text>
                     </view>
                     <image
                       src="@/static/images/tabbar/basket-sel.png"
@@ -304,8 +280,11 @@
 
 <script setup>
 const wxs = number()
-const indicatorColor = ref('#d1e5fb')
-const indicatorActiveColor = ref('#1b7dec')
+// const indicatorColor = ref('#d1e5fb')
+// const indicatorActiveColor = ref('#1b7dec')
+// 轮播图指示点颜色：浅绿 + 主绿
+const indicatorColor = ref('#E0F2F1')
+const indicatorActiveColor = ref('#4CAF50')
 const autoplay = ref(true)
 const interval = ref(2000)
 const duration = ref(1000)
@@ -316,6 +295,9 @@ const taglist = ref([])
 const updata = ref(true)
 
 onLoad(() => {
+  uni.setNavigationBarTitle({
+    title: '农产品种子商城'
+  })
   getAllData()
 })
 onShow(() => {

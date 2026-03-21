@@ -7,7 +7,7 @@
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTextStyle": "black",
         "enablePullDownRefresh": true,
-        "navigationBarTitleText": "mall4j"
+        "navigationBarTitleText": "农产品种子商城"
       }
     },
     {
@@ -30,7 +30,7 @@
       "style": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "分类商品",
+        "navigationBarTitleText": "分类选购",
         "navigationBarTextStyle": "black"
       }
     },
@@ -121,7 +121,7 @@
     {
       "path": "pages/prod/prod",
       "style": {
-        "navigationBarTitleText": "商品详情"
+        "navigationBarTitleText": "详情"
       }
     },
     {
@@ -156,7 +156,7 @@
     }
   ],
   "tabBar": {
-    "selectedColor": "#3a86b9",
+    "selectedColor": "#2e7d32",
     "color": "#b8b8b8",
     "list": [
       {
@@ -189,7 +189,7 @@
   "globalStyle": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "农产品种子商城",
     "navigationBarTextStyle": "black"
   },
   "subPackages": []

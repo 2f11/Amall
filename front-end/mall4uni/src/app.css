@@ -8,7 +8,8 @@
 .price{
   font-family: Arial;
   display: inline-block;
-  color: #eb2444;
+  /*color: #eb2444;*/
+  color: #4CAF50;
   padding-bottom:10rpx;
   padding-left:10rpx;
 }

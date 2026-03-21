@@ -1,5 +1,5 @@
 <template>
-  <view class="Mall4j container">
+  <view class="SeedShop container">
     <!-- 顶部子分类tab -->
     <scroll-view
       scroll-x="true"
@@ -67,7 +67,7 @@
         v-else
         class="empty-wrap"
       >
-        暂无商品数据~
+        暂无农品数据~
       </view>
     </view>
   </view>
@@ -172,6 +172,7 @@ const toProdPage = (e) => {
 }
 </script>
 
-<style lang="scss" scoped>
-@import "./sub-category.scss";
-</style>
+<!--<style lang="scss" scoped>-->
+<!--@import "./sub-category.scss";-->
+<!--</style>-->
+<style lang="scss" scoped src="./sub-category.scss"></style>

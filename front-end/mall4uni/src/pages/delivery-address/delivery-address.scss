@@ -1,5 +1,6 @@
+@use '@/uni.scss' as *;
 .container {
-  background-color: #f4f4f4;
+  background-color: $bg-color;
   border-top: 2rpx solid #e9eaec;
   min-height: 100vh;
 }
@@ -70,7 +71,7 @@
   box-shadow: 0 -1rpx 8rpx rgba(0, 0, 0, 0.05);
   text {
     font-size: 32rpx;
-    color: #eb2444;
+    color: $primary-color;
   }
 }
 .empty {

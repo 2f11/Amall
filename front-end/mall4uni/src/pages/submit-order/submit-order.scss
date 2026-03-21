@@ -1,5 +1,6 @@
+@use '@/uni.scss' as *;
 .container {
-  background: #f4f4f4;
+  background: $bg-color;
 }
 .submit-order {
   margin-bottom: 100rpx;
@@ -64,8 +65,8 @@
   .addr-bg {
     .add-addr {
       .plus-sign {
-        color: #eb2444;
-        border: 2rpx solid #eb2444;
+        color: $primary-color;
+        border: 2rpx solid $primary-color;
         padding: 0rpx 6rpx;
         margin-right: 10rpx;
       }
@@ -272,7 +273,7 @@
     }
     .item.payment {
       border-top: 2rpx solid #f1f1f1;
-      color: #eb2444;
+      color: $primary-color;
     }
     .item.coupon {
       border-bottom: 2rpx solid #e1e1e1;
@@ -303,7 +304,7 @@
     .item-txt {
       .price {
         display: inline;
-        color: #eb2444;
+        color: $price-color;
         font-size: 28rpx;
       }
     }
@@ -311,7 +312,7 @@
   .footer-box {
     padding: 0 10rpx;
     width: 200rpx;
-    background: #eb2444;
+    background: $primary-color;
     text-align: center;
     line-height: 100rpx;
     color: #fff;
@@ -376,7 +377,7 @@
   padding: 10px 0;
 }
 .coupon-tab.on {
-  border-bottom: 2px solid #eb2444;
+  border-bottom: 2px solid $primary-color;
   font-weight: 600;
 }
 .popup-cnt {
@@ -415,8 +416,8 @@ checkbox {
     height: 35rpx;
   }
   .wx-checkbox-input.wx-checkbox-input-checked {
-    background: #eb2444;
-    border-color: #eb2444;
+    background: $primary-color;
+    border-color: $primary-color;
     &::before {
       text-align: center;
       font-size: 22rpx;

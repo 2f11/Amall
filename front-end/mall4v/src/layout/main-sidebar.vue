@@ -211,7 +211,7 @@ const routeJump = menu => {
   left: 100px;
 }
 .menu-left {
-  background: #222222;
+  background: #1f2d20;
   color: #ffffff !important;
   width: 100px;
   height: calc(100vh - 50px);
@@ -247,7 +247,7 @@ const routeJump = menu => {
   text-align: center;
 }
 .menu-left li {
-  background: #222222;
+  background: transparent;
   color: #fff;
   height: 40px;
   cursor: pointer;
@@ -267,23 +267,37 @@ const routeJump = menu => {
 
 /* 鼠标移动到选项上修改背景颜色 */
 .menu-left li:hover {
-  background-color: #ffffff;
-  color: #155bd4;
-  stroke: #155bd4 !important;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  stroke: #ffffff !important;
 }
 /* 鼠标移动到选项上修改背景颜色 */
 .menu-right li:hover {
-  background-color: rgba(21, 91, 212, 0.1);
-  color: #155bd4;
+  background-color: rgba(46, 125, 50, 0.1);
+  color: var(--el-color-primary);
 }
 .menu-right li:hover {
-  background-color: rgba(21, 91, 212, 0.1);
-  color: #155bd4;
+  background-color: rgba(46, 125, 50, 0.1);
+  color: var(--el-color-primary);
 }
-.menu-left-active {
-  background-color: #ffffff;
-  color: #155bd4;
-  stroke: #155bd4 !important;
+.menu-left .menu-left-item.menu-left-active,
+.menu-left .menu-left-item1.menu-left-active {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  stroke: #ffffff !important;
+  position: relative;
+}
+
+.menu-left .menu-left-item.menu-left-active::before,
+.menu-left .menu-left-item1.menu-left-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background: var(--el-color-primary);
 }
 .item-text {
   overflow: hidden;

@@ -1,7 +1,16 @@
+@use '@/uni.scss' as *;
 .prod-items {
-  width: 43%;
+  // width: 43%;
+  // background: #fff;
+  // margin-bottom: 40rpx;
+  // box-sizing: border-box;
+  // width: calc(50% - 32rpx);  /* 每行两张卡片，中间预留 16rpx 间距 */
+  // background: #fff;
+  // margin-bottom: 24rpx;
+  // box-sizing: border-box;
+  width: 100%;
   background: #fff;
-  margin-bottom: 40rpx;
+  margin-bottom: 0;     /* 垂直间距让 prod-list 的 row-gap 控制即可 */
   box-sizing: border-box;
   .hot-imagecont {
     border-radius: 8rpx;
@@ -22,24 +31,25 @@
       line-height: 70rpx;
       font-family: Arial;
       .price {
-        color: #eb2444;
+        //color: #eb2444;
+        color: $price-color;
         padding-left: 20rpx;
       }
     }
   }
 }
-prod {
-  &:nth-child(2n-1) {
-    .prod-items {
-      padding: 20rpx 10rpx 10rpx 20rpx;
-    }
-  }
-  &:nth-child(2n) {
-    .prod-items {
-      padding: 20rpx 20rpx 10rpx 10rpx;
-    }
-  }
-}
+// prod {
+//   &:nth-child(2n-1) {
+//     .prod-items {
+//       padding: 20rpx 10rpx 10rpx 20rpx;
+//     }
+//   }
+//   &:nth-child(2n) {
+//     .prod-items {
+//       padding: 20rpx 20rpx 10rpx 10rpx;
+//     }
+//   }
+// }
 .hot-imagecont {
   .hotsaleimg {
     width: 100%;
@@ -64,4 +74,58 @@ prod {
 .deadline-price {
   font-size: 22rpx;
   margin-right: 5rpx;
+}
+/* === 农产品风格：价格做成浅绿价签（追加在文件末尾） === */
+.prod-items {
+  .hot-text {
+    .prod-text-info {
+      height: auto;
+      line-height: normal;
+
+      .price {
+        display: inline-flex;
+        align-items: baseline;
+        justify-content: flex-start;
+        gap: 2rpx;
+        color: $price-color;
+        line-height: 1;
+        font-family: Arial;
+        font-variant-numeric: tabular-nums;
+      }
+    }
+  }
+}
+
+.deadline-price {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 2rpx 8rpx;
+  margin-right: 6rpx;
+
+  font-size: 20rpx;
+  line-height: 1.1;
+  color: #6d4c00;
+
+  background: rgba(255, 183, 77, 0.35);
+  border: 2rpx solid rgba(255, 183, 77, 0.6);
+  border-radius: 999rpx;
+}
+
+.symbol {
+  font-size: 22rpx;
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+.big-num {
+  font-size: 34rpx;
+  font-weight: 800;
+  letter-spacing: 0.5rpx;
+}
+
+.small-num {
+  font-size: 22rpx;
+  font-weight: 600;
+  opacity: 0.9;
 }

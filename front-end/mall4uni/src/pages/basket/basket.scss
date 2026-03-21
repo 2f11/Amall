@@ -1,3 +1,4 @@
+@use '@/uni.scss' as *;
 .container {
   width: 100%;
   background: #f4f4f4;
@@ -18,8 +19,8 @@
         padding: 3rpx 5rpx;
         border-radius: 8rpx;
         font-size: 22rpx;
-        color: #eb2444;
-        border: 2rpx solid #eb2444;
+        color: $price-color;
+        border: 2rpx solid $price-color;
       }
       .text-list {
         font-size: 24rpx;
@@ -135,7 +136,7 @@
       align-items: center;
       justify-content: space-between;
       .price {
-        color: #eb2444;
+        color: $price-color;
       }
     }
   }
@@ -164,7 +165,7 @@
   .item {
     background: #f8f8f9;
   }
-  .discount-tips {
+    .discount-tips {
     .empty-prod {
       color: #777;
       font-size: 26rpx;
@@ -271,8 +272,8 @@
     height: 35rpx;
   }
   .wx-checkbox-input.wx-checkbox-input-checked {
-    background: #eb2444;
-    border-color: #eb2444;
+    background: $primary-color;
+    border-color:  $primary-color;
     &::before {
       text-align: center;
       font-size: 22rpx;
@@ -335,7 +336,7 @@
     align-items: flex-start;
     width: 300rpx;
     .price {
-      color: #eb2444;
+      color: $price-color;
       font-size: 30rpx;
     }
   }
@@ -359,7 +360,7 @@
   }
   .btn.settle {
     width: 200rpx;
-    background: #eb2444;
+    background: $primary-color;
     color: #fff;
   }
 }

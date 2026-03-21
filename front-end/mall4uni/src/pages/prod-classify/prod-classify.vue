@@ -1,11 +1,14 @@
 <template>
   <view class="container">
-    <view>
+    <view class="prod-list">
       <block
         v-for="(item, index) in prodList"
         :key="index"
       >
-        <production :item="item" />
+        <!-- <production :item="item" /> -->
+        <view class="prod-cell">
+          <production :item="item" />
+        </view>
       </block>
       <view
         v-if="!prodList.length"
@@ -44,16 +47,16 @@ onLoad((options) => {
       })
     } else if (options.tagid == 2) {
       uni.setNavigationBarTitle({
-        title: '商城热卖'
+        title: '热卖种子'
       })
     } else if (options.tagid == 3) {
       uni.setNavigationBarTitle({
-        title: '更多宝贝'
+        title: '更多农品'
       })
     }
   } else if (sts.value == 1) {
     uni.setNavigationBarTitle({
-      title: '新品推荐'
+      title: '新品种子'
     })
   } else if (sts.value == 2) {
     uni.setNavigationBarTitle({
@@ -65,11 +68,11 @@ onLoad((options) => {
     })
   } else if (sts.value == 4) {
     uni.setNavigationBarTitle({
-      title: '优惠券活动商品'
+      title: '优惠活动'
     })
   } else if (sts.value == 5) {
     uni.setNavigationBarTitle({
-      title: '我的收藏商品'
+      title: '我的收藏'
     })
   } else {
     uni.setNavigationBarTitle({

@@ -29,17 +29,23 @@
     "packNpmRelationList": [],
     "minifyWXSS": true,
     "disableUseStrict": false,
-    "ignoreUploadUnusedFiles": true,
+    "ignoreUploadUnusedFiles": false,
     "minifyWXML": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
-    }
+    },
+    "compileWorklet": false,
+    "localPlugins": false,
+    "useCompilerPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.23.2",
-  "appid": "wx6fa71e69231a4fa4",
+  "appid": "wx572f6061f1937316",
   "projectname": "mall4m",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},

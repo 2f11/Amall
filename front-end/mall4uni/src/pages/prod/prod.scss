@@ -1,3 +1,4 @@
+@use '@/uni.scss' as *;
 .container {
   background: #f4f4f4;
   height: calc(100vh - 88rpx);
@@ -67,10 +68,19 @@ swiper {
   line-height: 100rpx;
 }
 .price {
-  color: #eb2444;
+  ////color: #eb2444;
+  //color: $price-color;
+  //font-size: 24rpx;
+  //font-weight: 600;
+  //margin-right: 30rpx;
+  display: flex;
+  align-items: baseline;
+  gap: 4rpx;
+  color: $price-color;
   font-size: 24rpx;
   font-weight: 600;
   margin-right: 30rpx;
+  font-variant-numeric: tabular-nums;
 }
 .price-num {
   font-size: 46rpx;
@@ -134,7 +144,8 @@ swiper {
   width: 300rpx;
 }
 .cmt-good {
-  color: #eb2444;
+  //color: #eb2444;
+  color: $price-color;
   font-size: 24rpx;
 }
 .cmt-count {
@@ -174,7 +185,7 @@ swiper {
   }
   text.selected {
     color: #fff;
-    background: #e93b3d;
+    background: $primary-color;
   }
 }
 .cmt-item {
@@ -309,7 +320,8 @@ swiper {
   border-top: 1px dashed #ddd;
   padding: 5px 0;
   .reply-tit {
-    color: #eb2444;
+    //color: #eb2444;
+    color: $price-color;
   }
 }
 .prod-detail {
@@ -359,7 +371,9 @@ rich-text {
       width: 28rpx;
       height: 28rpx;
       border-radius: 14rpx;
-      background-color: #eb2444;
+      //background-color: #eb2444;
+      //color: $price-color;
+      background-color: $primary-color;
       text-align: center;
       line-height: 28rpx;
       font-size: 18rpx;
@@ -385,7 +399,8 @@ rich-text {
     color: #fff;
   }
   .btn.buy {
-    background: #eb2444;
+    //background: #eb2444;
+    background: $primary-color;
     color: #fff;
   }
 }
@@ -450,7 +465,7 @@ rich-text {
   display: inline-block;
   height: 40px;
   line-height: 40px;
-  color: #e4393c;
+  color: $price-color;
   font-size: 10px;
 }
 .pup-sku-price-int {
@@ -508,7 +523,9 @@ rich-text {
   font-size: 14px;
 }
 .sku-choose-item.active {
-  background-color: #eb2444;
+  //background-color: #eb2444;
+  background-color: $primary-color;
+  //color: $price-color;
   color: #fff;
 }
 .sku-choose-item.gray {
@@ -620,7 +637,9 @@ rich-text {
     color: #fff;
   }
   .btn.buy {
-    background: #eb2444;
+    //background: #eb2444;
+    //color: $price-color;
+    background: $primary-color;
     color: #fff;
   }
 }

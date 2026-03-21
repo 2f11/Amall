@@ -48,6 +48,19 @@ img {
   }
 }
 
+.el-input__wrapper,
+.el-textarea__inner {
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 2px rgba($--color-primary, 0.18) inset;
+}
+
+.el-textarea__inner:focus {
+  box-shadow: 0 0 0 2px rgba($--color-primary, 0.18);
+}
+
 
 /* Layout
 ------------------------------ */
@@ -286,29 +299,29 @@ img {
   display: inline-block;
 }
 .default-btn:hover {
-  color: #155bd4;
-  border-color: #155bd4;
+  color: var(--el-color-primary);
+  border-color: var(--el-color-primary);
 }
 .default-btn.primary-btn {
   color: #ffffff;
-  background-color: #155bd4;
-  border-color: #155bd4;
+  background-color: var(--el-color-primary);
+  border-color: var(--el-color-primary);
 }
 .default-btn.primary-btn:hover {
-  background: #447cdd;
-  border-color: #447cdd;
+  background: #256628;
+  border-color: #256628;
 }
 .default-btn.text-btn {
   font-size: 14px;
   padding: 0;
   margin-right: 0;
   border: none;
-  color: #155bd4;
+  color: var(--el-color-primary);
   background-color: unset;
   word-break: keep-all;
 }
 .default-btn.text-btn:hover {
-  color: #447cdd;
+  color: #256628;
 }
 .default-btn.text-btn.disabled-btn {
   color: #C0C4CC;
@@ -319,11 +332,11 @@ img {
 }
 .default-btn.primary-btn.disabled-btn {
   color: #ffffff;
-  background-color: #8aadea;
-  border-color: #8aadea;
+  background-color: #81c784;
+  border-color: #81c784;
   &:hover {
-    background-color: #8aadea;
-    border-color: #8aadea;
+    background-color: #81c784;
+    border-color: #81c784;
     cursor: not-allowed;
   }
 }

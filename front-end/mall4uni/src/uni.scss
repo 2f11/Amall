@@ -14,10 +14,21 @@
 
 /* 颜色变量 */
 
-/* 行为相关颜色 */  
-$uni-color-primary: #007aff;
-$uni-color-success: #4cd964;
-$uni-color-warning: #f0ad4e;
+// 农产品 / 种子商城主题色（全局）
+$primary-color: #4CAF50;        // 主色：清爽绿色
+$primary-dark: #388E3C;         // 深绿：按钮按下、顶部渐变
+$accent-color: #FFB74D;         // 辅助：橙黄，用于角标/活动
+$bg-color: #F5F3E7;             // 页面背景：米白偏土
+$card-bg-color: #FFFFFF;        // 卡片背景
+$text-color: #333333;           // 主文案
+$text-muted-color: #666666;     // 次文案
+$price-color: #4CAF50;          // 统一的价格绿色
+$shadow-color: rgba(76, 175, 80, 0.16); // 带点绿色的柔和阴影
+
+/* 行为相关颜色 */
+$uni-color-primary: $primary-color;
+$uni-color-success: $primary-color;
+$uni-color-warning: $accent-color;
 $uni-color-error: #dd524d;
 
 /* 文字基本颜色 */

@@ -1,8 +1,9 @@
+@use '@/uni.scss' as *;
 .container {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #f4f4f4;
+  background-color: $bg-color;
   color: #333;
 }
 .order-tit {
@@ -24,8 +25,8 @@
     text-align: center;
   }
   text.on {
-    border-bottom: 4rpx solid #eb2444;
-    color: #eb2444;
+    border-bottom: 4rpx solid $primary-color;
+    color: $primary-color;
   }
 }
 .main {

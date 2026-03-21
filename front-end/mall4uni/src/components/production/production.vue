@@ -28,15 +28,7 @@
           >
             限时价
           </text>
-          <text class="symbol">
-            ￥
-          </text>
-          <text class="big-num">
-            {{ wxs.parsePrice(item.price)[0] }}
-          </text>
-          <text class="small-num">
-            .{{ wxs.parsePrice(item.price)[1] }}
-          </text>
+          <text class="symbol">￥</text><text class="big-num">{{ wxs.parsePrice(item.price)[0] }}</text><text class="small-num">.{{ wxs.parsePrice(item.price)[1] }}</text>
         </view>
       </view>
     </view>

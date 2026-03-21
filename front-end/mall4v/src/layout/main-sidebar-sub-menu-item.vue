@@ -101,8 +101,8 @@ const gotoRouteHandle = menu => {
       color: #333;
     }
     &.menu-active {
-      background-color: #e7eefb;
-      color: #155bd4;
+      background-color: #eaf4ea;
+      color: var(--el-color-primary);
     }
     :deep(.el-menu-item-group__title) {
       padding: 0;

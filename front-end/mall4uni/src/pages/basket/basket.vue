@@ -95,7 +95,7 @@
         <image src="@/static/images/tabbar/basket.png" />
       </view>
       <view class="txt">
-        您还没有添加任何商品哦~
+        您还没有添加任何农品哦~
       </view>
     </view>
 
@@ -398,5 +398,5 @@ const onDelBasket = () => {
 </script>
 
 <style scoped lang="scss">
-@import "./basket.scss";
+@use "./basket.scss";
 </style>

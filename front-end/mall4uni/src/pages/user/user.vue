@@ -326,7 +326,7 @@ const showCollectionCount = () => {
 const myCollectionHandle = () => {
   let url = '/pages/prod-classify/prod-classify?sts=5'
   const id = 0
-  const title = '我的收藏商品'
+  const title = '我的收藏'
   if (id) {
     url += '&tagid=' + id + '&title=' + title
   }

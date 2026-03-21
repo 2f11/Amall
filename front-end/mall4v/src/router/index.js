@@ -101,6 +101,7 @@ router.beforeEach((to, from, next) => {
       method: 'get',
       params: http.adornParams()
     }).then(({ data }) => {
+      data.menuList = filterMenuList(data.menuList)
       sessionStorage.setItem('Authorities', JSON.stringify(data.authorities || '[]'))
       fnAddDynamicMenuRoutes(data.menuList)
       router.options.isAddDynamicMenuRoutes = true
@@ -148,6 +149,18 @@ router.beforeEach((to, from, next) => {
     })
   }
 })
+
+function filterMenuList (menuList = []) {
+  return menuList.filter(item => {
+    if (item.name === '评论管理' || item.url === 'prod/prodComm') {
+      return false
+    }
+    if (item.list && item.list.length > 0) {
+      item.list = filterMenuList(item.list)
+    }
+    return true
+  })
+}
 
 /**
  * 判断当前路由类型, global: 全局路由, main: 主入口路由

@@ -13,7 +13,7 @@
     padding-right: 8px;
     user-select: none;
     span{
-      color: #155bd4;
+      color: var(--el-color-primary);
       cursor: pointer;
       &:hover{
         opacity: 0.8;

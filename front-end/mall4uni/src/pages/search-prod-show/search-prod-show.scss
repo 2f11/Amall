@@ -1,3 +1,4 @@
+@use '@/uni.scss' as *;
 .container {
   background: #f4f4f4;
   .empty {
@@ -40,7 +41,7 @@
       font-size: 28rpx;
     }
     .tab-item.on {
-      color: #eb2444;
+      color: $price-color;
     }
   }
 }
@@ -78,7 +79,7 @@
     position: absolute;
     right: 30rpx;
     top: 31rpx;
-    color: #eb2444;
+    color: $price-color;
   }
   .search-list-img {
     width: 40rpx;
@@ -152,7 +153,7 @@
         }
         .go-to-buy {
           font-size: 26rpx;
-          background: #eb2444;
+          background: $price-color;
           color: #fff;
           border-radius: 50rpx;
           width: 150rpx;
@@ -177,10 +178,31 @@
         }
         .prod-price.more {
           font-size: 28rpx;
-          color: #eb2444;
+          color: $price-color;
           font-family: arial;
         }
       }
     }
   }
 }
+/* === 搜索页纵向列表：价格也做成浅绿价签（追加在文件末尾） === */
+.prod-price.more {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2rpx;
+
+  padding: 6rpx 14rpx;
+  border-radius: 999rpx;
+
+  background: rgba(76, 175, 80, 0.12);
+  border: 2rpx solid rgba(76, 175, 80, 0.18);
+
+  color: $price-color;
+  line-height: 1;
+  font-family: Arial;
+  font-variant-numeric: tabular-nums;
+}
+
+.prod-price.more .symbol { font-size: 22rpx; font-weight: 600; opacity: 0.95; }
+.prod-price.more .big-num { font-size: 34rpx; font-weight: 800; letter-spacing: 0.5rpx; }
+.prod-price.more .small-num { font-size: 22rpx; font-weight: 600; opacity: 0.9; }

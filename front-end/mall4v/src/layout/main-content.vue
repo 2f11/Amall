@@ -27,10 +27,15 @@
           <router-view />
         </keep-alive>
       </div>
-      <el-card
+      <!-- <el-card
         v-else-if="homeHidden"
         class="card-content-h"
         style="border-radius: 0 !important; box-shadow: none"
+        :body-style="siteContentViewHeight"
+      >-->
+      <el-card
+        v-else-if="homeHidden"
+        class="card-content-h"
         :body-style="siteContentViewHeight"
       >
         <router-view />
@@ -63,7 +68,7 @@ const selectMenu = computed(() => commonStore.selectMenu)
 const homeHidden = computed(() => route.name !== 'home')
 </script>
 <style scoped>
-.main-head {
+/*.main-head {
   background: #ffffff;
   width: 100%;
   height: 40px;
@@ -77,9 +82,35 @@ const homeHidden = computed(() => route.name !== 'home')
   border-top: none;
 }
 .breadcrumb-item:last-child span {
-  color: #155bd4 !important;
+  color: var(--el-color-primary) !important;
 }
 .card-content-h {
   min-height: calc(100vh - 50px - 60px - 20px);
+}*/
+.main-head {
+  background: #ffffff;
+  width: 100%;
+  height: 40px;
+  position: fixed;
+  top: 50px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: none;
+  border-top: none;
+}
+.breadcrumb-item:last-child span {
+  color: var(--el-color-primary) !important;
+}
+.card-content-h {
+  min-height: calc(100vh - 50px - 60px - 20px);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: none;
+}
+.card-content-h :deep(.el-card__body) {
+  padding: 16px 20px;
 }
 </style>

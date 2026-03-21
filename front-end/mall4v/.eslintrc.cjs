@@ -13,7 +13,17 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'plugin:vue-scoped-css/vue3-recommended'
   ],
-  overrides: [],
+  overrides: [
+    {
+      files: ['src/layout/main-navbar.vue'],
+      rules: {
+        quotes: 'off',
+        semi: 'off',
+        'comma-dangle': 'off',
+        'vue/max-attributes-per-line': 'off'
+      }
+    }
+  ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
