@@ -11,11 +11,18 @@
         <!--          :src="configuration.bsTopBarIcon"-->
         <!--          alt="logo"-->
         <!--        >-->
-        <span v-if="!sidebarFold" class="site-navbar-lg">
+        <span
+          v-if="!sidebarFold"
+          class="site-navbar-lg"
+        >
           <span class="brand-dot">种</span>
           <span class="brand-title">农产品商城管理后台</span>
         </span>
-        <span v-else class="site-navbar-mini" :style="fontCloseSize">
+        <span
+          v-else
+          class="site-navbar-mini"
+          :style="fontCloseSize"
+        >
           农品
         </span>
       </div>
@@ -50,63 +57,66 @@
         </div>
       </div>
       <!-- 弹窗, 修改密码 -->
-      <UpdatePassword v-if="updatePassowrdVisible" ref="updatePassowrdRef" />
+      <UpdatePassword
+        v-if="updatePassowrdVisible"
+        ref="updatePassowrdRef"
+      />
     </nav>
   </div>
 </template>
 
 <script setup>
-import { ElMessageBox } from "element-plus";
-import UpdatePassword from "./main-navbar-update-password.vue";
+import { ElMessageBox } from 'element-plus'
+import UpdatePassword from './main-navbar-update-password.vue'
 
-const route = useRoute();
-const router = useRouter();
-const userStore = useUserStore();
-const userName = computed(() => userStore.name);
+const route = useRoute()
+const router = useRouter()
+const userStore = useUserStore()
+const userName = computed(() => userStore.name)
 const fontCloseSize = reactive({
-  fontSize: "16px",
-});
-const commonStore = useCommonStore();
-const sidebarFold = computed(() => commonStore.sidebarFold);
+  fontSize: '16px'
+})
+const commonStore = useCommonStore()
+const sidebarFold = computed(() => commonStore.sidebarFold)
 const setSidebarFold = () => {
-  const len = commonStore.selectMenu.length;
-  const flag = sessionStorage.getItem("isExpand");
-  if ((route.path === "/home" || len === 1) && flag === "0") {
-    commonStore.updateSidebarFold(true);
+  const len = commonStore.selectMenu.length
+  const flag = sessionStorage.getItem('isExpand')
+  if ((route.path === '/home' || len === 1) && flag === '0') {
+    commonStore.updateSidebarFold(true)
   } else {
-    const foldFlag = sidebarFold.value;
-    commonStore.updateSidebarFold(!foldFlag);
+    const foldFlag = sidebarFold.value
+    commonStore.updateSidebarFold(!foldFlag)
   }
-};
+}
 
 const logoutHandle = () => {
-  ElMessageBox.confirm("确定进行[退出]操作?", "提示", {
-    confirmButtonText: "确定",
-    cancelButtonText: "取消",
-    type: "warning",
+  ElMessageBox.confirm('确定进行[退出]操作?', '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning'
   }).then(() => {
     http({
-      url: http.adornUrl("/logOut"),
-      method: "post",
-      data: http.adornData(),
+      url: http.adornUrl('/logOut'),
+      method: 'post',
+      data: http.adornData()
     }).then(() => {
-      clearLoginInfo();
-      router.push({ name: "login" });
-    });
-  });
-};
+      clearLoginInfo()
+      router.push({ name: 'login' })
+    })
+  })
+}
 
-const updatePassowrdVisible = ref(false);
-const updatePassowrdRef = ref(null);
+const updatePassowrdVisible = ref(false)
+const updatePassowrdRef = ref(null)
 /**
  * 修改密码
  */
 const updatePasswordHandle = () => {
-  updatePassowrdVisible.value = true;
+  updatePassowrdVisible.value = true
   nextTick(() => {
-    updatePassowrdRef.value?.init();
-  });
-};
+    updatePassowrdRef.value?.init()
+  })
+}
 </script>
 
 <style lang="scss" scoped>

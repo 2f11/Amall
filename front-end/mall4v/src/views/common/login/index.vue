@@ -2,15 +2,9 @@
   <div class="login-page">
     <div class="login-card">
       <div class="login-header">
-        <div class="brand-mark">
-          种
-        </div>
-        <h1 class="title">
-          农产品种子商城管理后台
-        </h1>
-        <p class="subtitle">
-          统一管理种子、农资、农产品、订单与库存
-        </p>
+        <div class="brand-mark">种</div>
+        <h1 class="title">农产品种子商城管理后台</h1>
+        <p class="subtitle">统一管理种子、农资、农产品、订单与库存</p>
       </div>
       <el-form
         ref="dataFormRef"
@@ -77,15 +71,9 @@ const dataForm = ref({
 })
 
 const dataRule = {
-  userName: [
-    { required: true, message: '帐号不能为空', trigger: 'blur' }
-  ],
-  password: [
-    { required: true, message: '密码不能为空', trigger: 'blur' }
-  ],
-  captcha: [
-    { required: true, message: '验证码不能为空', trigger: 'blur' }
-  ]
+  userName: [{ required: true, message: '帐号不能为空', trigger: 'blur' }],
+  password: [{ required: true, message: '密码不能为空', trigger: 'blur' }],
+  captcha: [{ required: true, message: '验证码不能为空', trigger: 'blur' }]
 }
 
 const verifyRef = ref(null)
@@ -111,12 +99,14 @@ const login = (verifyResult) => {
       passWord: encrypt(dataForm.value.password),
       captchaVerification: verifyResult.captchaVerification
     })
-  }).then(({ data }) => {
-    cookie.set('Authorization', data.accessToken)
-    router.replace({ name: 'home' })
-  }).catch(() => {
-    loading.value = false
   })
+    .then(({ data }) => {
+      cookie.set('Authorization', data.accessToken)
+      router.replace({ name: 'home' })
+    })
+    .catch(() => {
+      loading.value = false
+    })
 }
 
 const getCaptcha = () => {
@@ -156,10 +146,21 @@ onBeforeUnmount(() => {
   content: '';
   position: absolute;
   inset: -120px;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 52%),
-    radial-gradient(circle at 85% 30%, rgba(255, 241, 179, 0.18) 0%, rgba(255, 241, 179, 0) 48%),
-    radial-gradient(circle at 35% 85%, rgba(124, 179, 66, 0.18) 0%, rgba(124, 179, 66, 0) 50%);
+  background: radial-gradient(
+      circle at 15% 20%,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0) 52%
+    ),
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(255, 241, 179, 0.18) 0%,
+      rgba(255, 241, 179, 0) 48%
+    ),
+    radial-gradient(
+      circle at 35% 85%,
+      rgba(124, 179, 66, 0.18) 0%,
+      rgba(124, 179, 66, 0) 50%
+    );
   filter: blur(2px);
   pointer-events: none;
 }

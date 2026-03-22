@@ -33,7 +33,7 @@
                 v-if="menu.list"
                 :class="[
                   'menu-left-item',
-                  {'menu-left-active': selectLeftId === menu.menuId}
+                  { 'menu-left-active': selectLeftId === menu.menuId }
                 ]"
                 @click="expandMenu(menu)"
               >
@@ -46,7 +46,8 @@
                   class="item-text"
                   :title="menu.name.length > 4 ? menu.name : ''"
                   style="font-size: 14px"
-                >{{ menu.name }}</span>
+                  >{{ menu.name }}</span
+                >
               </div>
               <div
                 v-else
@@ -67,7 +68,8 @@
                   class="item-text"
                   :title="menu.name.length > 4 ? menu.name : ''"
                   style="font-size: 14px"
-                >{{ menu.name }}</span>
+                  >{{ menu.name }}</span
+                >
               </div>
             </li>
           </template>
@@ -95,7 +97,7 @@ const menuList = computed({
   get: () => {
     return commonStore.menuList
   },
-  set: val => {
+  set: (val) => {
     commonStore.updateMenuList(val)
   }
 })
@@ -109,15 +111,17 @@ const selectLeftId = computed({
 
 onBeforeMount(() => {
   menuList.value = JSON.parse(sessionStorage.getItem('menuList') || '[]')
-  dynamicMenuRoutes.value = JSON.parse(sessionStorage.getItem('dynamicMenuRoutes') || '[]')
+  dynamicMenuRoutes.value = JSON.parse(
+    sessionStorage.getItem('dynamicMenuRoutes') || '[]'
+  )
   routeHandle(route)
   if (selectLeftId.value) {
     handleRightRoute(selectLeftId.value)
   }
 })
 
-const handleRightRoute = selectLeftId => {
-  menuList.value.forEach(item => {
+const handleRightRoute = (selectLeftId) => {
+  menuList.value.forEach((item) => {
     if (selectLeftId === item.menuId) {
       expandMenu(item, true)
     }
@@ -133,7 +137,7 @@ const toHome = () => {
   commonStore.updateSelectRightId('')
 }
 
-const routeHandle = route => {
+const routeHandle = (route) => {
   if (route.name === 'home') {
     expandMenuList.value = []
     sessionStorage.setItem('isExpand', '0')
@@ -142,7 +146,7 @@ const routeHandle = route => {
   }
 }
 
-const gotoRouteHandle = menu => {
+const gotoRouteHandle = (menu) => {
   if (router.history.current.name === menu.url) {
     expandMenuList.value = []
     commonStore.updateSidebarFold(true)
@@ -153,7 +157,11 @@ const gotoRouteHandle = menu => {
   }
   if (menu.name === '消息' || menu.name === 'Message') {
     sessionStorage.setItem('isExpand', '0')
-    window.open(location.href.split('#')[0] + '#/imBox', '_blank', 'noopener,noreferrer')
+    window.open(
+      location.href.split('#')[0] + '#/imBox',
+      '_blank',
+      'noopener,noreferrer'
+    )
   } else {
     expandMenuList.value = []
     commonStore.updateSidebarFold(true)
@@ -164,7 +172,7 @@ const gotoRouteHandle = menu => {
   }
 }
 
-const expandMenu = menu => {
+const expandMenu = (menu) => {
   expandMenuList.value = menu.list || []
   commonStore.updateSidebarFold(menu.list === null)
   const id1 = commonStore.selectLeftId
@@ -178,7 +186,7 @@ const expandMenu = menu => {
   }
 }
 
-const routeJump = menu => {
+const routeJump = (menu) => {
   const routes = menu.list
   for (let i = 0; i < routes.length; i++) {
     if (!routes[i].hidden && !routes[i].list) {

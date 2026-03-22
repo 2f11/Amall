@@ -1,6 +1,11 @@
 /**app.wxss**/
+page,
+uni-page-body {
+  background-color: #F5F3E7;
+}
+
 .container {
-  height: 100%;
+  min-height: 100vh;
   box-sizing: border-box;
   color: #333;
   font-family: helvetica,'Heiti SC',PingFangSC-Light;

@@ -48,15 +48,7 @@
               </view>
               <view class="prod-text-info">
                 <view class="price">
-                  <text class="symbol">
-                    ￥
-                  </text>
-                  <text class="big-num">
-                    {{ wxs.parsePrice(prod.price)[0] }}
-                  </text>
-                  <text class="small-num">
-                    .{{ wxs.parsePrice(prod.price)[1] }}
-                  </text>
+                  <text class="symbol">¥</text><text class="big-num">{{ wxs.parsePrice(prod.price)[0] }}</text><text class="small-num">.{{ wxs.parsePrice(prod.price)[1] }}</text>
                 </view>
               </view>
             </view>

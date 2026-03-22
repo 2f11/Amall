@@ -11,28 +11,25 @@
 package com.yami.shop.bean.app.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
 /**
  * @author lanhai
  */
+@Data
 public class UserDto {
 
+	@Schema(description = "用户id")
+	private String userId;
+
+	@Schema(description = "用户昵称")
+	private String nickName;
+
+	@Schema(description = "用户头像")
+	private String pic;
 
 	@Schema(description = "用户状态：0禁用 1正常" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Integer status;
 	@Schema(description = "token" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String token;
-	
-	public Integer getStatus() {
-		return status;
-	}
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-	public String getToken() {
-		return token;
-	}
-	public void setToken(String token) {
-		this.token = token;
-	}
-	
+
 }

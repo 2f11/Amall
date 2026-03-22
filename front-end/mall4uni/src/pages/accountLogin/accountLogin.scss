@@ -1,124 +1,183 @@
-.con {
-  background: #fff;
-  height: 100%;
-  margin-top: 50px;
-}
-image {
-  display: block;
-  width: 150rpx;
-  height: 150rpx;
-  margin: auto;
-  border-radius: 50%;
-  width: 150rpx;
-  height: 150rpx;
-  margin-bottom: 8%;
-}
-.login-form {
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 20%;
-}
-.authorized-btn {
-  width: 90%;
-  margin: 0 auto;
-  text-align: center;
-  background-color: #0ab906;
-  border: 1rpx solid #0ab906;
-  color: #fff;
-  border-radius: 6rpx;
-  font-size: 26rpx;
-  padding: 8rpx;
-  margin-top: 80rpx;
-  border: 1rpx solid #0ab906;
-  border-radius: 6rpx;
-  font-size: 26rpx;
-  padding: 8rpx;
-  margin-top: 80rpx;
-}
-.to-idx-btn {
-  width: 90%;
-  margin: 0 auto;
-  text-align: center;
-  background-color: #eeeeee;
-  color: #333;
-  border-radius: 6rpx;
-  font-size: 26rpx;
-  padding: 8rpx;
-  margin-top: 30rpx;
-  border-radius: 6rpx;
-  font-size: 26rpx;
-  padding: 8rpx;
-  margin-top: 30rpx;
-}
-.form-title {
-  width: 100%;
-  margin-bottom: 50rpx;
-  font-size: 32rpx;
-  text-align: center;
-  color: #00a0e9;
-  margin-bottom: 50rpx;
-  font-size: 32rpx;
-}
-.item {
-  display: block;
-  margin-bottom: 30rpx;
-  margin-bottom: 30rpx;
-}
-.account {
-  display: flex;
-  background: #f8f8f8;
-  padding: 15rpx;
+.auth-page {
+  min-height: 100vh;
+  padding: calc(28rpx + env(safe-area-inset-top)) 24rpx calc(48rpx + env(safe-area-inset-bottom));
   box-sizing: border-box;
-  font-size: 26rpx;
+  background: linear-gradient(180deg, rgba(76, 175, 80, 0.16) 0%, $bg-color 58%, $bg-color 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 680rpx;
+  border-radius: 22rpx;
+  background: rgba(255, 255, 255, 0.96);
+  border: 2rpx solid rgba(76, 175, 80, 0.12);
+  box-shadow: 0 14rpx 34rpx rgba(76, 175, 80, 0.14);
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.brand-header {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  input {
-    padding-left: 20rpx;
-    width: 75%;
-    padding-left: 20rpx;
+  gap: 10rpx;
+  padding: 32rpx 26rpx 22rpx;
+  background: linear-gradient(135deg, rgba(56, 142, 60, 0.92) 0%, rgba(76, 175, 80, 0.86) 70%, rgba(76, 175, 80, 0.82) 100%);
+  border-top-left-radius: 22rpx;
+  border-top-right-radius: 22rpx;
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -160rpx;
+    background:
+      radial-gradient(circle at 18% 25%, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 52%),
+      radial-gradient(circle at 80% 35%, rgba(255, 183, 77, 0.20) 0%, rgba(255, 183, 77, 0) 58%);
+    pointer-events: none;
   }
 }
+
+.brand-title {
+  font-size: 32rpx;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.96);
+  letter-spacing: 0.6rpx;
+  position: relative;
+  text-align: center;
+}
+
+.brand-sub {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.82);
+  position: relative;
+  text-align: center;
+}
+
+.form-body {
+  padding: 26rpx 26rpx 28rpx;
+  box-sizing: border-box;
+}
+
+.login-form {
+  width: 100%;
+}
+
+.item {
+  margin-bottom: 18rpx;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+  background: #ffffff;
+  border-radius: 16rpx;
+  border: 2rpx solid rgba(76, 175, 80, 0.14);
+  padding: 18rpx 18rpx;
+  box-sizing: border-box;
+  font-size: 26rpx;
+}
+
+.input-item {
+  color: rgba(31, 45, 32, 0.72);
+  font-weight: 700;
+  width: 64rpx;
+  flex: 0 0 auto;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  font-size: 28rpx;
+  color: $text-color;
+}
+
+.inp-palcehoder {
+  color: rgba(31, 45, 32, 0.35);
+}
+
+.operate {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 6rpx;
+}
+
+.to-register {
+  font-size: 26rpx;
+  color: $primary-color;
+}
+
+.actions {
+  margin-top: 18rpx;
+}
+
 button {
   &::after {
     border: 0 !important;
   }
 }
-.operate {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+.authorized-btn {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  border-radius: 18rpx;
+  font-size: 30rpx;
+  font-weight: 900;
+  padding: 18rpx 0;
+  background: linear-gradient(135deg, $primary-dark 0%, $primary-color 70%, $primary-color 100%);
+  box-shadow: 0 14rpx 28rpx rgba(56, 142, 60, 0.18);
 }
 
-.to-register {
-  font-size: 28rpx;
-  color: #00AAFF;
-  font-size: 28rpx;
+.authorized-btn:active {
+  opacity: 0.92;
 }
+
+.to-idx-btn {
+  width: 100%;
+  text-align: center;
+  color: rgba(31, 45, 32, 0.72);
+  border-radius: 18rpx;
+  font-size: 28rpx;
+  padding: 18rpx 0;
+  margin-top: 14rpx;
+  background: #ffffff;
+  border: 2rpx solid rgba(76, 175, 80, 0.16);
+}
+
+.to-idx-btn:active {
+  background: rgba(76, 175, 80, 0.06);
+}
+
 .error {
+  .account {
+    border-color: rgba(198, 40, 40, 0.55);
+  }
   .error-text {
     display: block;
     width: 100%;
-    font-size: 28rpx;
-    color: #e43130;
+    font-size: 24rpx;
+    color: #c62828;
     text-align: left;
     margin-top: 10rpx;
-    font-size: 28rpx;
-    margin-top: 10rpx;
     .warning-icon {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       color: #fff;
       width: 26rpx;
       height: 26rpx;
       line-height: 26rpx;
-      background: #e43130;
+      background: #c62828;
       border-radius: 50%;
       text-align: center;
-      margin-right: 12rpx;
-      font-size: 22rpx;
-      width: 26rpx;
-      height: 26rpx;
-      line-height: 26rpx;
-      margin-right: 12rpx;
-      font-size: 22rpx;
+      margin-right: 10rpx;
+      font-size: 20rpx;
     }
   }
 }

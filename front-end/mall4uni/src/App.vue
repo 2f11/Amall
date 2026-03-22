@@ -2,7 +2,7 @@
 http.getCartCount()
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "./app.css";
 /* 隐藏头部 */
 uni-page-head {

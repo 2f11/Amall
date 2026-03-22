@@ -2,17 +2,9 @@
   <view class="container">
     <view class="bg-sear">
       <view class="scrolltop">
-        <view
-          class="section"
-          @tap="toSearchPage"
-        >
-          <image
-            src="@/static/images/icon/search.png"
-            class="search-img"
-          />
-          <text class="placeholder">
-            搜索
-          </text>
+        <view class="section" @tap="toSearchPage">
+          <image src="@/static/images/icon/search.png" class="search-img" />
+          <text class="placeholder"> 搜索 </text>
         </view>
       </view>
     </view>
@@ -31,10 +23,7 @@
         previous-margin="20rpx"
         next-margin="20rpx"
       >
-        <block
-          v-for="(item, index) in indexImgs"
-          :key="index"
-        >
+        <block v-for="(item, index) in indexImgs" :key="index">
           <swiper-item class="banner-item">
             <view class="img-box">
               <image
@@ -50,49 +39,35 @@
       <!-- end swiper -->
 
       <view class="cat-item">
-        <view
-          class="item"
-          data-sts="1"
-          @tap="toClassifyPage"
-        >
-          <image src="@/static/images/icon/newProd.png" />
+        <view class="item" data-sts="1" @tap="toClassifyPage">
+          <view class="quick-icon">
+            <image src="@/static/images/icon/newProd.png" />
+          </view>
           <text>新品种子</text>
         </view>
-        <view
-          class="item"
-          data-sts="1"
-          @tap="toClassifyPage"
-        >
-          <image src="@/static/images/icon/timePrice.png" />
+        <view class="item" data-sts="1" @tap="toClassifyPage">
+          <view class="quick-icon">
+            <image src="@/static/images/icon/timePrice.png" />
+          </view>
           <text>农资特惠</text>
         </view>
-        <view
-          class="item"
-          data-sts="3"
-          @tap="toClassifyPage"
-        >
-          <image src="@/static/images/icon/neweveryday.png" />
+        <view class="item" data-sts="3" @tap="toClassifyPage">
+          <view class="quick-icon">
+            <image src="@/static/images/icon/neweveryday.png" />
+          </view>
           <text>当季热销</text>
         </view>
-        <view
-          class="item"
-          @tap="toCouponCenter"
-        >
-          <image src="@/static/images/icon/newprods.png" />
+        <view class="item" @tap="toCouponCenter">
+          <view class="quick-icon">
+            <image src="@/static/images/icon/newprods.png" />
+          </view>
           <text>领优惠</text>
         </view>
       </view>
 
       <!-- 消息播放 -->
-      <view
-        v-if="news && news.length"
-        class="message-play"
-        @tap="onNewsPage"
-      >
-        <image
-          src="@/static/images/icon/horn.png"
-          class="hornpng"
-        />
+      <view v-if="news && news.length" class="message-play" @tap="onNewsPage">
+        <image src="@/static/images/icon/horn.png" class="hornpng" />
         <swiper
           :vertical="true"
           :autoplay="true"
@@ -100,10 +75,7 @@
           duration="1000"
           class="swiper-cont"
         >
-          <block
-            v-for="(item, index) in news"
-            :key="index"
-          >
+          <block v-for="(item, index) in news" :key="index">
             <swiper-item class="items">
               {{ item.title }}
             </swiper-item>
@@ -113,17 +85,11 @@
       </view>
     </view>
 
-    <view
-      v-if="updata"
-      class="updata"
-    >
-      <block
-        v-for="(item, index) in taglist"
-        :key="index"
-      >
+    <view v-if="updata" class="updata">
+      <block v-for="(item, index) in taglist" :key="index">
         <!-- 每日上新 -->
         <view
-          v-if="item.style==='2' && item.prods && item.prods.length"
+          v-if="item.style === '2' && item.prods && item.prods.length"
           class="up-to-date"
         >
           <view class="title">
@@ -135,16 +101,11 @@
               :data-title="item.title"
               @tap="toClassifyPage"
             >
-              <text class="more">
-                查看更多
-              </text>
+              <text class="more"> 查看更多 </text>
             </view>
           </view>
           <view class="item-cont">
-            <block
-              v-for="(prod, index2) in item.prods"
-              :key="index2"
-            >
+            <block v-for="(prod, index2) in item.prods" :key="index2">
               <view
                 class="prod-item"
                 :data-prodid="prod.prodId"
@@ -152,16 +113,19 @@
               >
                 <view>
                   <view class="imagecont">
-                    <img-show
-                      :src="prod.pic"
-                      :class-list="['prodimg']"
-                    />
+                    <img-show :src="prod.pic" :class-list="['prodimg']" />
                   </view>
                   <view class="prod-text">
                     {{ prod.prodName }}
                   </view>
                   <view class="price">
-                    <text class="symbol">￥</text><text class="big-num">{{ wxs.parsePrice(prod.price)[0] }}</text><text class="small-num">.{{ wxs.parsePrice(prod.price)[1] }}</text>
+                    <text class="symbol">￥</text
+                    ><text class="big-num">{{
+                      wxs.parsePrice(prod.price)[0]
+                    }}</text
+                    ><text class="small-num"
+                      >.{{ wxs.parsePrice(prod.price)[1] }}</text
+                    >
                   </view>
                 </view>
               </view>
@@ -171,7 +135,7 @@
 
         <!-- 商城热卖 -->
         <view
-          v-if="item.style==='1' && item.prods && item.prods.length"
+          v-if="item.style === '1' && item.prods && item.prods.length"
           class="hot-sale"
         >
           <view class="title">
@@ -183,27 +147,19 @@
               :data-title="item.title"
               @tap="toClassifyPage"
             >
-              <text class="more">
-                更多
-              </text>
+              <text class="more"> 更多 </text>
               <text class="arrow" />
             </view>
           </view>
           <view class="hotsale-item-cont">
-            <block
-              v-for="(prod, index2) in item.prods"
-              :key="index2"
-            >
+            <block v-for="(prod, index2) in item.prods" :key="index2">
               <view
                 class="prod-items"
                 :data-prodid="prod.prodId"
                 @tap="toProdPage"
               >
                 <view class="hot-imagecont">
-                  <img-show
-                    :src="prod.pic"
-                    :class-list="['hotsaleimg']"
-                  />
+                  <img-show :src="prod.pic" :class-list="['hotsaleimg']" />
                 </view>
                 <view class="hot-text">
                   <view class="hotprod-text">
@@ -214,7 +170,13 @@
                   </view>
                   <view class="prod-text-info">
                     <view class="price">
-                      <text class="symbol">￥</text><text class="big-num">{{ wxs.parsePrice(prod.price)[0] }}</text><text class="small-num">.{{ wxs.parsePrice(prod.price)[1] }}</text>
+                      <text class="symbol">￥</text
+                      ><text class="big-num">{{
+                        wxs.parsePrice(prod.price)[0]
+                      }}</text
+                      ><text class="small-num"
+                        >.{{ wxs.parsePrice(prod.price)[1] }}</text
+                      >
                     </view>
                     <image
                       src="@/static/images/tabbar/basket-sel.png"
@@ -229,27 +191,21 @@
 
         <!-- 更多宝贝 -->
         <view
-          v-if="item.style==='0' && item.prods && item.prods.length"
+          v-if="item.style === '0' && item.prods && item.prods.length"
           class="more-prod"
         >
           <view class="title">
             {{ item.title }}
           </view>
           <view class="prod-show">
-            <block
-              v-for="(prod, index2) in item.prods"
-              :key="index2"
-            >
+            <block v-for="(prod, index2) in item.prods" :key="index2">
               <view
                 class="show-item"
                 :data-prodid="prod.prodId"
                 @tap="toProdPage"
               >
                 <view class="more-prod-pic">
-                  <img-show
-                    :src="prod.pic"
-                    :class-list="['more-pic']"
-                  />
+                  <img-show :src="prod.pic" :class-list="['more-pic']" />
                 </view>
                 <view class="prod-text-right">
                   <view class="prod-text more">
@@ -260,7 +216,13 @@
                   </view>
                   <view class="b-cart">
                     <view class="price">
-                      <text class="symbol">￥</text><text class="big-num">{{ wxs.parsePrice(prod.price)[0] }}</text><text class="small-num">.{{ wxs.parsePrice(prod.price)[1] }}</text>
+                      <text class="symbol">￥</text
+                      ><text class="big-num">{{
+                        wxs.parsePrice(prod.price)[0]
+                      }}</text
+                      ><text class="small-num"
+                        >.{{ wxs.parsePrice(prod.price)[1] }}</text
+                      >
                     </view>
                     <image
                       src="@/static/images/tabbar/basket-sel.png"
@@ -279,211 +241,218 @@
 </template>
 
 <script setup>
-const wxs = number()
+const wxs = number();
 // const indicatorColor = ref('#d1e5fb')
 // const indicatorActiveColor = ref('#1b7dec')
 // 轮播图指示点颜色：浅绿 + 主绿
-const indicatorColor = ref('#E0F2F1')
-const indicatorActiveColor = ref('#4CAF50')
-const autoplay = ref(true)
-const interval = ref(2000)
-const duration = ref(1000)
-const indexImgs = ref([])
-const seq = ref(0)
-const news = ref([])
-const taglist = ref([])
-const updata = ref(true)
+const indicatorColor = ref("#E0F2F1");
+const indicatorActiveColor = ref("#4CAF50");
+const autoplay = ref(true);
+const interval = ref(2000);
+const duration = ref(1000);
+const indexImgs = ref([]);
+const seq = ref(0);
+const news = ref([]);
+const taglist = ref([]);
+const updata = ref(true);
 
 onLoad(() => {
   uni.setNavigationBarTitle({
-    title: '农产品种子商城'
-  })
-  getAllData()
-})
+    title: "农产品种子商城",
+  });
+  getAllData();
+});
 onShow(() => {
   // #ifdef MP-WEIXIN
   uni.getSetting({
-    success (res) {
-      if (!res.authSetting['scope.userInfo']) {
+    success(res) {
+      if (!res.authSetting["scope.userInfo"]) {
         uni.navigateTo({
-          url: '/pages/login/login'
-        })
+          url: "/pages/login/login",
+        });
       }
-    }
-  })
+    },
+  });
   // #endif
-  http.getCartCount() // 重新计算购物车总数量
-})
+  http.getCartCount(); // 重新计算购物车总数量
+});
 
 onPullDownRefresh(() => {
   // 模拟加载
   setTimeout(() => {
-    getAllData()
-    uni.stopPullDownRefresh() // 停止下拉刷新
-  }, 100)
-})
+    getAllData();
+    uni.stopPullDownRefresh(); // 停止下拉刷新
+  }, 100);
+});
 
 const getAllData = () => {
-  http.getCartCount()// 重新计算购物车总数量
-  getIndexImgs()
-  getNoticeList()
-  getTag()
-}
+  http.getCartCount(); // 重新计算购物车总数量
+  getIndexImgs();
+  getNoticeList();
+  getTag();
+};
 
 const toProdPage = (e) => {
-  const prodid = e.currentTarget.dataset.prodid
+  const prodid = e.currentTarget.dataset.prodid;
 
   if (prodid) {
     uni.navigateTo({
-      url: '/pages/prod/prod?prodid=' + prodid
-    })
+      url: "/pages/prod/prod?prodid=" + prodid,
+    });
   }
-}
+};
 /**
  * 加入购物车
  * @param item
  */
 const addToCart = (item) => {
   uni.showLoading({
-    mask: true
-  })
-  http.request({
-    url: '/prod/prodInfo',
-    method: 'GET',
-    data: {
-      prodId: item.prodId
-    }
-  })
-    .then(({ data }) => {
-      http.request({
-        url: '/p/shopCart/changeItem',
-        method: 'POST',
-        data: {
-          basketId: 0,
-          count: 1,
-          prodId: data.prodId,
-          shopId: data.shopId,
-          skuId: data.skuList[0].skuId
-        }
-      })
-        .then(() => {
-          uni.hideLoading()
-          http.getCartCount() // 重新计算购物车总数量
-          uni.showToast({
-            title: '加入购物车成功',
-            icon: 'none'
-          })
-        })
+    mask: true,
+  });
+  http
+    .request({
+      url: "/prod/prodInfo",
+      method: "GET",
+      data: {
+        prodId: item.prodId,
+      },
     })
-}
+    .then(({ data }) => {
+      http
+        .request({
+          url: "/p/shopCart/changeItem",
+          method: "POST",
+          data: {
+            basketId: 0,
+            count: 1,
+            prodId: data.prodId,
+            shopId: data.shopId,
+            skuId: data.skuList[0].skuId,
+          },
+        })
+        .then(() => {
+          uni.hideLoading();
+          http.getCartCount(); // 重新计算购物车总数量
+          uni.showToast({
+            title: "加入购物车成功",
+            icon: "none",
+          });
+        });
+    });
+};
 
 const toCouponCenter = () => {
   uni.showToast({
-    icon: 'none',
-    title: '该功能未开源'
-  })
-}
+    icon: "none",
+    title: "该功能未开源",
+  });
+};
 
 /**
  * 跳转搜索页
  */
 const toSearchPage = () => {
   uni.navigateTo({
-    url: '/pages/search-page/search-page'
-  })
-}
+    url: "/pages/search-page/search-page",
+  });
+};
 
 /**
  * 跳转商品活动页面
  * @param e
  */
 const toClassifyPage = (e) => {
-  let url = '/pages/prod-classify/prod-classify?sts=' + e.currentTarget.dataset.sts
-  const id = e.currentTarget.dataset.id
-  const title = e.currentTarget.dataset.title
+  let url =
+    "/pages/prod-classify/prod-classify?sts=" + e.currentTarget.dataset.sts;
+  const id = e.currentTarget.dataset.id;
+  const title = e.currentTarget.dataset.title;
 
   if (id) {
-    url += '&tagid=' + id + '&title=' + title
+    url += "&tagid=" + id + "&title=" + title;
   }
 
   uni.navigateTo({
-    url
-  })
-}
+    url,
+  });
+};
 /**
  * 跳转公告列表页面
  */
 const onNewsPage = () => {
   uni.navigateTo({
-    url: '/pages/recent-news/recent-news'
-  })
-}
+    url: "/pages/recent-news/recent-news",
+  });
+};
 
 /**
  * 加载轮播图
  */
 const getIndexImgs = () => {
-  http.request({
-    url: '/indexImgs',
-    method: 'GET',
-    data: {}
-  })
-    .then(({ data }) => {
-      indexImgs.value = data
-      seq.value = data
+  http
+    .request({
+      url: "/indexImgs",
+      method: "GET",
+      data: {},
     })
-}
+    .then(({ data }) => {
+      indexImgs.value = data;
+      seq.value = data;
+    });
+};
 
 const getNoticeList = () => {
   // 加载公告
-  http.request({
-    url: '/shop/notice/topNoticeList',
-    method: 'GET',
-    data: {}
-  })
-    .then(({ data }) => {
-      news.value = data
+  http
+    .request({
+      url: "/shop/notice/topNoticeList",
+      method: "GET",
+      data: {},
     })
-}
+    .then(({ data }) => {
+      news.value = data;
+    });
+};
 
 /**
  * 加载商品标题分组列表
  */
 const getTag = () => {
-  http.request({
-    url: '/prod/tag/prodTagList',
-    method: 'GET',
-    data: {}
-  })
-    .then(({ data }) => {
-      taglist.value = data
-      for (let i = 0; i < data.length; i++) {
-        updata.value = false
-        updata.value = true
-        getTagProd(data[i].id, i)
-      }
+  http
+    .request({
+      url: "/prod/tag/prodTagList",
+      method: "GET",
+      data: {},
     })
-}
+    .then(({ data }) => {
+      taglist.value = data;
+      for (let i = 0; i < data.length; i++) {
+        updata.value = false;
+        updata.value = true;
+        getTagProd(data[i].id, i);
+      }
+    });
+};
 
 const getTagProd = (id, index) => {
-  http.request({
-    url: '/prod/prodListByTagId',
-    method: 'GET',
-    data: {
-      tagId: id,
-      size: 6
-    }
-  })
-    .then(({ data }) => {
-      updata.value = false
-      updata.value = true
-      const taglistParam = taglist.value
-      taglistParam[index].prods = data.records
-      taglist.value = taglistParam
+  http
+    .request({
+      url: "/prod/prodListByTagId",
+      method: "GET",
+      data: {
+        tagId: id,
+        size: 6,
+      },
     })
-}
+    .then(({ data }) => {
+      updata.value = false;
+      updata.value = true;
+      const taglistParam = taglist.value;
+      taglistParam[index].prods = data.records;
+      taglist.value = taglistParam;
+    });
+};
 </script>
 
 <style scoped lang="scss">
-@use './index.scss';
+@use "./index.scss";
 </style>

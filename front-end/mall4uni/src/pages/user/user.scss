@@ -1,75 +1,76 @@
 @use '@/uni.scss' as *;
 .container {
-  background-color: $bg-color;
-  height: calc(100vh - 44px - env(safe-area-inset-top) - var(--tab-bar-height) - env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(76, 175, 80, 0.14) 0%, $bg-color 42%, $bg-color 100%);
+  min-height: 100vh;
   box-sizing: border-box;
-  padding-bottom: 60rpx;
+  padding-bottom: calc(96rpx + env(safe-area-inset-bottom));
 }
-.userinfo {
+.profile-header {
   position: relative;
-  width: 100%;
-  background: #fff;
-  text-align: center;
-  padding: 30rpx 0;
-  .userinfo-con {
-    width: 240rpx;
-    margin: auto;
-    .userinfo-avatar {
-      overflow: hidden;
-      display: block;
-      width: 160rpx;
-      height: 160rpx;
-      border-radius: 50%;
-      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-      margin: auto;
-      image {
-        width: 160rpx;
-        height: 160rpx;
-      }
-    }
-    .userinfo-name {
-      font-size: 30rpx;
-      font-weight: bold;
-      margin-top: 20rpx;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-      text-overflow: ellipsis;
-      word-break: break-all;
-    }
+  width: calc(100% - 40rpx);
+  margin: 18rpx 20rpx 0;
+  background: linear-gradient(135deg, rgba($primary-dark, 0.86) 0%, rgba($primary-color, 0.78) 72%, rgba($primary-color, 0.74) 100%);
+  padding: 34rpx 0 44rpx;
+  border-radius: 22rpx;
+  border: 2rpx solid rgba(76, 175, 80, 0.12);
+  overflow: hidden;
+  box-shadow: 0 10rpx 26rpx $shadow-color;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -180rpx;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 55%),
+      radial-gradient(circle at 86% 30%, rgba(255, 183, 77, 0.22) 0%, rgba(255, 183, 77, 0) 55%),
+      radial-gradient(circle at 35% 95%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 52%);
+    pointer-events: none;
   }
-}
-.userinfo-none {
   display: flex;
-  padding: 30rpx;
-  background: #fff;
+  flex-direction: column;
   align-items: center;
-  .default-pic {
-    padding-right: 30rpx;
+  justify-content: center;
+  gap: 18rpx;
+
+  .profile-avatar {
+    position: relative;
+    overflow: hidden;
+    width: 168rpx;
+    height: 168rpx;
+    border-radius: 50%;
+    box-shadow: 0 14rpx 30rpx rgba(0, 0, 0, 0.22);
+    border: 6rpx solid rgba(255, 255, 255, 0.86);
     image {
-      width: 160rpx;
-      height: 160rpx;
+      width: 168rpx;
+      height: 168rpx;
     }
   }
-}
-.none-login {
-  button {
-    background: #fff;
-    &::after {
-      border: 0;
-    }
+
+  .profile-text {
+    position: relative;
+    width: 100%;
+    padding: 0 40rpx;
+    box-sizing: border-box;
+    text-align: center;
   }
-  .unlogin {
-    font-size: 30rpx;
-    text-align: left;
-    padding: 0;
+
+  .profile-name {
+    font-size: 34rpx;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.96);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    letter-spacing: 0.4rpx;
   }
-  .click-login {
-    font-size: 26rpx;
-    color: #777;
-    text-align: left;
-    padding: 0;
+
+  .profile-sub {
+    margin-top: 10rpx;
+    font-size: 24rpx;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.4;
   }
 }
 .binding-phone {
@@ -92,17 +93,22 @@
 }
 .list-cont {
   width: 100%;
-  background: #f7f7f7;
-  margin-top: 20rpx;
+  background: transparent;
+  margin-top: 14rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
   .total-order {
     background: #fff;
+    border-radius: 22rpx;
+    border: 2rpx solid rgba(76, 175, 80, 0.12);
+    box-shadow: 0 10rpx 26rpx $shadow-color;
     .order-tit {
       display: flex;
       justify-content: space-between;
       height: 80rpx;
       line-height: 80rpx;
       font-size: 30rpx;
-      border-bottom: 1px solid #f7f7f7;
+      border-bottom: 2rpx solid rgba(76, 175, 80, 0.10);
       padding: 0 30rpx;
       .checkmore {
         font-size: 22rpx;
@@ -122,19 +128,30 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        image {
-          width: 70rpx;
-          height: 70rpx;
-          margin-bottom: 20rpx;
+        .order-icon {
+          width: 84rpx;
+          height: 84rpx;
+          border-radius: 24rpx;
+          background: rgba(76, 175, 80, 0.10);
+          border: 2rpx solid rgba(76, 175, 80, 0.18);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 18rpx;
+          box-shadow: 0 10rpx 18rpx rgba(76, 175, 80, 0.12);
+          image {
+            width: 64rpx;
+            height: 64rpx;
+          }
         }
         .num-badge {
           position: absolute;
-          top: -15rpx;
-          right: -12rpx;
-          color: $primary-color;
-          border: 3rpx solid $primary-color;
+          top: 2rpx;
+          right: 4rpx;
+          color: #1f2d20;
           border-radius: 50rpx;
-          background: #fff;
+          background: rgba(255, 183, 77, 0.95);
+          border: 2rpx solid rgba(255, 255, 255, 0.9);
           min-width: 30rpx;
           height: 30rpx;
           line-height: 30rpx;
@@ -147,16 +164,23 @@
   }
   .my-menu {
     background-color: #fff;
-    margin-top: 20rpx;
+    margin-top: 16rpx;
+    border-radius: 22rpx;
+    border: 2rpx solid rgba(76, 175, 80, 0.12);
+    box-shadow: 0 10rpx 26rpx $shadow-color;
+    overflow: hidden;
     .memu-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 100rpx;
-      border-bottom: 2rpx solid #f7f7f7;
+      border-bottom: 2rpx solid rgba(76, 175, 80, 0.10);
       padding: 0 30rpx;
+      &:active {
+        background: rgba(76, 175, 80, 0.06);
+      }
       &:nth-child(1) {
-        border-top: 2rpx solid #f7f7f7;
+        border-top: none;
       }
       &:last-child {
         border-bottom: none;
@@ -179,14 +203,17 @@
 .arrowhead {
   width: 15rpx;
   height: 15rpx;
-  border-top: 2rpx solid #999;
-  border-right: 2rpx solid #999;
+  border-top: 2rpx solid rgba(31, 45, 32, 0.45);
+  border-right: 2rpx solid rgba(31, 45, 32, 0.45);
   transform: rotate(45deg);
   margin-left: 10rpx;
 }
 .prod-col {
-  margin-top: 20rpx;
+  margin-top: 16rpx;
   background: #fff;
+  border-radius: 22rpx;
+  border: 2rpx solid rgba(76, 175, 80, 0.12);
+  box-shadow: 0 10rpx 26rpx $shadow-color;
   display: flex;
   justify-content: space-around;
   padding: 30rpx 0 10rpx 0;
@@ -206,16 +233,22 @@
 .log-out {
   padding: 20rpx;
   text-align: center;
-  margin-top: 20rpx;
+  margin-top: 16rpx;
 }
 .log-out-n {
   font-size: 30rpx;
   margin: auto;
-  width: 200rpx;
-  padding: 20rpx;
-  border-radius: 10rpx;
-  background: #e43130;
-  color: #ffffff;
+  width: 100%;
+  padding: 22rpx 20rpx;
+  border-radius: 18rpx;
+  background: #ffffff;
+  color: #c62828;
+  border: 2rpx solid rgba(198, 40, 40, 0.35);
+  box-shadow: 0 10rpx 24rpx rgba(198, 40, 40, 0.10);
+}
+
+.log-out-n:active {
+  background: rgba(198, 40, 40, 0.06);
 }
 button.memu-btn.memu-item {
   background-color: #fff;
