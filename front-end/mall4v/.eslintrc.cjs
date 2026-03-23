@@ -84,6 +84,7 @@ module.exports = {
     'vue/v-on-event-hyphenation': ['warn', 'always', {
       autofix: true,
       ignore: []
-    }]
+    }],
+    'vue/singleline-html-element-content-newline': 'off'
   }
 }

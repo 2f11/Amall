@@ -11,6 +11,7 @@
     >
       <template #menu-left>
         <el-button
+          v-if="isAuth('sys:config:save')"
           type="primary"
           icon="el-icon-plus"
           @click.stop="onAddOrUpdate()"
@@ -19,6 +20,7 @@
         </el-button>
 
         <el-button
+          v-if="isAuth('sys:config:delete')"
           type="danger"
           :disabled="dataListSelections.length <= 0"
           @click="onDelete()"
@@ -28,6 +30,7 @@
       </template>
       <template #menu="scope">
         <el-button
+          v-if="isAuth('sys:config:update')"
           type="primary"
           icon="el-icon-edit"
           @click.stop="onAddOrUpdate(scope.row.id)"
@@ -35,6 +38,7 @@
           编辑
         </el-button>
         <el-button
+          v-if="isAuth('sys:config:delete')"
           type="danger"
           icon="el-icon-delete"
           @click.stop="onDelete(scope.row.id)"
@@ -54,8 +58,10 @@
 </template>
 
 <script setup>
+import { isAuth } from '@/utils'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { tableOption } from '@/crud/sys/config.js'
+import AddOrUpdate from './add-or-update.vue'
 const dataList = ref([])
 const page = reactive({
   total: 0, // 总页数
@@ -101,14 +107,14 @@ const selectionChange = (val) => {
 }
 
 const addOrUpdateVisible = ref(false)
-const addOrUpdate = ref(null)
+const addOrUpdateRef = ref(null)
 /**
  * 新增 / 修改
  */
 const onAddOrUpdate = (id) => {
   addOrUpdateVisible.value = true
   nextTick(() => {
-    addOrUpdate.value?.init(id)
+    addOrUpdateRef.value?.init(id)
   })
 }
 /**

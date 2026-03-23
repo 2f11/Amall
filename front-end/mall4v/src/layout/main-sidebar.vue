@@ -46,8 +46,7 @@
                   class="item-text"
                   :title="menu.name.length > 4 ? menu.name : ''"
                   style="font-size: 14px"
-                  >{{ menu.name }}</span
-                >
+                >{{ menu.name }}</span>
               </div>
               <div
                 v-else
@@ -68,8 +67,7 @@
                   class="item-text"
                   :title="menu.name.length > 4 ? menu.name : ''"
                   style="font-size: 14px"
-                  >{{ menu.name }}</span
-                >
+                >{{ menu.name }}</span>
               </div>
             </li>
           </template>
