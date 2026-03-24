@@ -182,25 +182,25 @@ const onHeaderTap = () => {
 const toDistCenter = () => {
   uni.showToast({
     icon: "none",
-    title: "该功能未开源",
+    title: "演示图片",
   });
 };
 const toCouponCenter = () => {
   uni.showToast({
     icon: "none",
-    title: "该功能未开源",
+    title: "演示图片",
   });
 };
 const toMyCouponPage = () => {
   uni.showToast({
     icon: "none",
-    title: "该功能未开源",
+    title: "演示图片",
   });
 };
 const handleTips = () => {
   uni.showToast({
     icon: "none",
-    title: "该功能未开源",
+    title: "演示图片",
   });
 };
 const toAddressList = () => {
@@ -286,32 +286,33 @@ const toLogin = () => {
  * 退出登录
  */
 const logout = () => {
-  http
-    .request({
-      url: "/logOut",
-      method: "post",
-    })
-    .then(() => {
-      util.removeTabBadge();
-      uni.removeStorageSync("loginResult");
-      uni.removeStorageSync("Token");
-      uni.removeStorageSync("hadLogin");
-      uni.removeStorageSync("expiresTimeStamp");
-      uni.removeStorageSync("isRefreshingToken");
-      uni.showToast({
-        title: "退出成功",
-        icon: "none",
-      });
-      orderAmount.value = "";
-      collectionCount.value = 0;
-      isAuthInfo.value = false;
-      loginResult.value = "";
-      setTimeout(() => {
-        uni.switchTab({
-          url: "/pages/index/index",
-        });
-      }, 1000);
-    });
+  uni.showModal({
+    title: "提示",
+    content: "确定要退出登录吗？",
+    confirmColor: "#c62828",
+    success: (res) => {
+      if (res.confirm) {
+        http
+          .request({
+            url: "/logOut",
+            method: "post",
+          })
+          .then(() => {
+            util.removeTabBadge();
+            uni.removeStorageSync("loginResult");
+            uni.removeStorageSync("Token");
+            uni.removeStorageSync("hadLogin");
+            uni.removeStorageSync("expiresTimeStamp");
+            uni.removeStorageSync("isRefreshingToken");
+            isAuthInfo.value = false;
+            loginResult.value = "";
+            uni.reLaunch({
+              url: "/pages/user/user",
+            });
+          });
+      }
+    },
+  });
 };
 </script>
 

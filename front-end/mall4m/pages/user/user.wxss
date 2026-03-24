@@ -202,19 +202,31 @@ page {
 }
 
 /* 退出登录 */
-.log-out{
-	padding:20rpx;
-	text-align: center;
-	margin-top:20rpx;
+.log-out {
+  padding: 32rpx 40rpx;
+  text-align: center;
+  margin-top: 32rpx;
+  margin-bottom: 40rpx;
 }
-.log-out-n{
-	font-size: 30rpx;
-	margin: auto;
-	width:200rpx;
-	padding:20rpx;
-	border-radius: 10rpx;
-	background: #e43130;
-	color:#ffffff;
+.log-out-n {
+  font-size: 30rpx;
+  font-weight: 500;
+  margin: auto;
+  width: 100%;
+  padding: 24rpx 0;
+  border-radius: 50rpx;
+  background: #fff;
+  color: #e43130;
+  border: 2rpx solid rgba(228, 49, 48, 0.12);
+  box-shadow: 0 8rpx 20rpx rgba(228, 49, 48, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.log-out-n:active {
+  background: rgba(228, 49, 48, 0.04);
+  transform: scale(0.98);
 }
 button.memu-btn.memu-item {
   background-color: #fff;

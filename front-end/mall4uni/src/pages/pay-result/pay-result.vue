@@ -97,7 +97,7 @@ const payAgain = () => {
         paySign: data.paySign,
         success: () => {
           uni.redirectTo({
-            url: '/pages/pay-result/pay-result?sts=1&orderNum=' + orderNumbers.value
+            url: '/pages/pay-result/pay-result?sts=1&orderNumbers=' + orderNumbers.value
           })
         }
       })

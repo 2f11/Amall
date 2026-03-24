@@ -101,7 +101,7 @@
               :data-title="item.title"
               @tap="toClassifyPage"
             >
-              <text class="more"> 查看更多 </text>
+              <text class="more"> 更多 </text>
             </view>
           </view>
           <view class="item-cont">
@@ -195,7 +195,17 @@
           class="more-prod"
         >
           <view class="title">
-            {{ item.title }}
+            <text>{{ item.title }}</text>
+            <view
+              class="more-prod-cont"
+              data-sts="0"
+              :data-id="item.id"
+              :data-title="item.title"
+              @tap="toClassifyPage"
+            >
+              <text class="more"> 更多 </text>
+              <text class="arrow" />
+            </view>
           </view>
           <view class="prod-show">
             <block v-for="(prod, index2) in item.prods" :key="index2">
@@ -344,7 +354,7 @@ const addToCart = (item) => {
 const toCouponCenter = () => {
   uni.showToast({
     icon: "none",
-    title: "该功能未开源",
+    title: "演示图片",
   });
 };
 

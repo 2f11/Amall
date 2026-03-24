@@ -200,7 +200,6 @@ swiper-item {
   //  background: $primary-color;
   //}
   .more-prod-cont {
-    //color: #999;
     color: $text-muted-color;
     display: inline-block;
     text-align: right;
@@ -208,28 +207,27 @@ swiper-item {
       position: absolute;
       right: 30rpx;
       top: 48rpx;
-      //color: #666;
-      color: $text-muted-color;
+      color: $primary-color;
       font-size: 24rpx;
-      padding: 0 20rpx;
-      height: 44rpx;
-      line-height: 44rpx;
+      height: 48rpx;
+      line-height: 48rpx;
+      background: rgba(76, 175, 80, 0.08); // 使用主色调的超浅背景
+      border: 1px solid rgba(76, 175, 80, 0.15);
+      border-radius: 30rpx;
+      padding: 0 24rpx;
+      transition: all 0.2s ease;
+    }
+    .more:active {
+      background: rgba(76, 175, 80, 0.15);
+      transform: scale(0.95);
     }
     .arrow {
-      top: 58rpx;
-      right: 30rpx;
-      //border-top: 2rpx solid #666;
-      //border-right: 2rpx solid #666;
-      border-top: 2rpx solid $text-muted-color;
-      border-right: 2rpx solid $text-muted-color;
+      display: none;
     }
   }
 }
 .up-to-date {
   .title {
-    //color: #fff;
-    //background: none;
-    // 这里继承上面 .title 的样式即可，不再强制白字
     color: $text-color;
     background: $bg-color;
     .more-prod-cont {
@@ -237,14 +235,22 @@ swiper-item {
         position: absolute;
         right: 30rpx;
         top: 48rpx;
-        color: #fff;
+        color: $primary-color;
         font-size: 24rpx;
-        //background: #65addf;
-        background: linear-gradient(90deg, $accent-color, $primary-color);
+        height: 48rpx;
+        line-height: 48rpx;
+        background: rgba(76, 175, 80, 0.08);
+        border: 1px solid rgba(76, 175, 80, 0.15);
         border-radius: 30rpx;
-        padding: 0 30rpx;
-        height: 44rpx;
-        line-height: 44rpx;
+        padding: 0 24rpx;
+        transition: all 0.2s ease;
+      }
+      .more:active {
+        background: rgba(76, 175, 80, 0.15);
+        transform: scale(0.95);
+      }
+      .arrow {
+        display: none;
       }
     }
   }

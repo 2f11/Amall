@@ -5,9 +5,27 @@
 .order-detail {
   margin-bottom: 120rpx;
   padding-bottom: 160rpx;
+  .order-status-header {
+    background: linear-gradient(135deg, $primary-color 0%, $primary-dark 100%);
+    padding: 60rpx 40rpx;
+    color: #fff;
+    .status-text {
+      font-size: 36rpx;
+      font-weight: bold;
+      margin-bottom: 10rpx;
+    }
+    .status-desc {
+      font-size: 24rpx;
+      opacity: 0.85;
+    }
+  }
   .delivery-addr {
-    padding: 20rpx 30rpx;
+    padding: 30rpx;
     background: #fff;
+    position: relative;
+    margin-top: -20rpx;
+    border-radius: 20rpx 20rpx 0 0;
+    box-shadow: 0 -10rpx 20rpx rgba(0, 0, 0, 0.05);
     .user-info {
       line-height: 48rpx;
       word-wrap: break-word;

@@ -3,14 +3,8 @@
     <view class="container">
       <view class="submit-order">
         <!-- 收货地址 -->
-        <view
-          class="delivery-addr"
-          @tap="toAddrListPage"
-        >
-          <view
-            v-if="!userAddr"
-            class="addr-bg"
-          >
+        <view class="delivery-addr" @tap="toAddrListPage">
+          <view v-if="!userAddr" class="addr-bg">
             <view class="add-addr">
               <view class="plus-sign-img">
                 <image src="@/static/images/icon/plus-sign.png" />
@@ -19,10 +13,7 @@
             </view>
             <view class="arrow empty" />
           </view>
-          <view
-            v-if="userAddr"
-            class="addr-bg whole"
-          >
+          <view v-if="userAddr" class="addr-bg whole">
             <view class="addr-icon">
               <image src="@/static/images/icon/addr.png" />
             </view>
@@ -35,7 +26,8 @@
               </text>
             </view>
             <view class="addr">
-              {{ userAddr.province }}{{ userAddr.city }}{{ userAddr.area }}{{ userAddr.addr }}
+              {{ userAddr.province }}{{ userAddr.city }}{{ userAddr.area
+              }}{{ userAddr.addr }}
             </view>
             <view class="arrow" />
           </view>
@@ -43,10 +35,7 @@
 
         <!-- 商品详情 -->
         <view class="prod-item">
-          <block
-            v-for="(item, index) in orderItems"
-            :key="index"
-          >
+          <block v-for="(item, index) in orderItems" :key="index">
             <view
               class="item-cont"
               :data-ordernum="item.primaryOrderNo"
@@ -64,9 +53,7 @@
                 </view>
                 <view class="price-nums">
                   <text class="prodprice">
-                    <text class="symbol">
-                      ￥
-                    </text>
+                    <text class="symbol"> ￥ </text>
                     <text class="big-num">
                       {{ wxs.parsePrice(item.price)[0] }}
                     </text>
@@ -74,29 +61,21 @@
                       .{{ wxs.parsePrice(item.price)[1] }}
                     </text>
                   </text>
-                  <text class="prodcount">
-                    x{{ item.prodCount }}
-                  </text>
+                  <text class="prodcount"> x{{ item.prodCount }} </text>
                 </view>
               </view>
             </view>
           </block>
 
           <view class="total-num">
-            <text class="prodcount">
-              共{{ totalCount }}件商品
-            </text>
+            <text class="prodcount"> 共{{ totalCount }}件商品 </text>
             <view class="prodprice">
               合计：
-              <text class="symbol">
-                ￥
-              </text>
+              <text class="symbol"> ￥ </text>
               <text class="big-num">
                 {{ wxs.parsePrice(total)[0] }}
               </text>
-              <text class="small-num">
-                .{{ wxs.parsePrice(total)[1] }}
-              </text>
+              <text class="small-num"> .{{ wxs.parsePrice(total)[1] }} </text>
             </view>
           </view>
         </view>
@@ -104,17 +83,9 @@
         <!-- 订单详情 -->
         <view class="order-msg">
           <view class="msg-item">
-            <view
-              class="item coupon"
-              @tap="showCouponPopup"
-            >
-              <text class="item-tit">
-                优惠券：
-              </text>
-              <text
-                v-if="!coupons.canUseCoupons"
-                class="item-txt"
-              >
+            <view class="item coupon" @tap="showCouponPopup">
+              <text class="item-tit"> 优惠券： </text>
+              <text v-if="!coupons.canUseCoupons" class="item-txt">
                 暂无可用
               </text>
               <text class="coupon-btn">
@@ -124,10 +95,7 @@
             </view>
             <view class="item">
               <text>买家留言：</text>
-              <input
-                v-model="remarks"
-                placeholder="给卖家留言"
-              >
+              <input v-model="remarks" placeholder="给卖家留言" />
             </view>
           </view>
         </view>
@@ -135,29 +103,19 @@
         <view class="order-msg">
           <view class="msg-item">
             <view class="item">
-              <view class="item-tit">
-                订单总额：
-              </view>
+              <view class="item-tit"> 订单总额： </view>
               <view class="item-txt price">
-                <text class="symbol">
-                  ￥
-                </text>
+                <text class="symbol"> ￥ </text>
                 <text class="big-num">
                   {{ wxs.parsePrice(total)[0] }}
                 </text>
-                <text class="small-num">
-                  .{{ wxs.parsePrice(total)[1] }}
-                </text>
+                <text class="small-num"> .{{ wxs.parsePrice(total)[1] }} </text>
               </view>
             </view>
             <view class="item">
-              <view class="item-tit">
-                运费：
-              </view>
+              <view class="item-tit"> 运费： </view>
               <view class="item-txt price">
-                <text class="symbol">
-                  ￥
-                </text>
+                <text class="symbol"> ￥ </text>
                 <text class="big-num">
                   {{ wxs.parsePrice(transfee)[0] }}
                 </text>
@@ -167,13 +125,9 @@
               </view>
             </view>
             <view class="item">
-              <view class="item-tit">
-                优惠金额：
-              </view>
+              <view class="item-tit"> 优惠金额： </view>
               <view class="item-txt price">
-                <text class="symbol">
-                  -￥
-                </text>
+                <text class="symbol"> -￥ </text>
                 <text class="big-num">
                   {{ wxs.parsePrice(shopReduce)[0] }}
                 </text>
@@ -185,9 +139,7 @@
             <view class="item payment">
               <view class="item-txt price">
                 小计：
-                <text class="symbol">
-                  ￥
-                </text>
+                <text class="symbol"> ￥ </text>
                 <text class="big-num">
                   {{ wxs.parsePrice(actualTotal)[0] }}
                 </text>
@@ -206,9 +158,7 @@
           <view class="item-txt">
             合计：
             <view class="price">
-              <text class="symbol">
-                ￥
-              </text>
+              <text class="symbol"> ￥ </text>
               <text class="big-num">
                 {{ wxs.parsePrice(actualTotal)[0] }}
               </text>
@@ -218,50 +168,44 @@
             </view>
           </view>
         </view>
-        <view
-          class="footer-box"
-          @tap="toPay"
-        >
-          提交订单
+        <view class="footer-box" @tap="toPay">
+          {{ isOrderCreated ? "立即支付" : "提交订单" }}
         </view>
       </view>
     </view>
 
     <!-- 选择优惠券弹窗 -->
-    <view
-      v-if="popupShow"
-      class="popup-hide"
-    >
+    <view v-if="popupShow" class="popup-hide">
       <view class="popup-box">
         <view class="popup-tit">
           <text>优惠券</text>
-          <text
-            class="close"
-            @tap="closePopup"
-          />
+          <text class="close" @tap="closePopup" />
         </view>
         <view class="coupon-tabs">
           <view
-            :class="'coupon-tab ' + (couponSts==1?'on':'')"
+            :class="'coupon-tab ' + (couponSts == 1 ? 'on' : '')"
             data-sts="1"
             @tap="changeCouponSts"
           >
-            可用优惠券({{ coupons.canUseCoupons.length ? coupons.canUseCoupons.length : 0 }})
+            可用优惠券({{
+              coupons.canUseCoupons.length ? coupons.canUseCoupons.length : 0
+            }})
           </view>
           <view
-            :class="'coupon-tab ' + (couponSts==2?'on':'')"
+            :class="'coupon-tab ' + (couponSts == 2 ? 'on' : '')"
             data-sts="2"
             @tap="changeCouponSts"
           >
-            不可用优惠券({{ coupons.unCanUseCoupons.length ? coupons.unCanUseCoupons.length : 0 }})
+            不可用优惠券({{
+              coupons.unCanUseCoupons.length
+                ? coupons.unCanUseCoupons.length
+                : 0
+            }})
           </view>
         </view>
         <view class="popup-cnt">
           <block v-if="couponSts == 1">
-            <view
-              v-for="(item, index) in coupons.canUseCoupons"
-              :key="index"
-            >
+            <view v-for="(item, index) in coupons.canUseCoupons" :key="index">
               <coupon
                 :item="item"
                 order="true"
@@ -271,26 +215,14 @@
             </view>
           </block>
           <block v-if="couponSts == 2">
-            <view
-              v-for="(item, index) in coupons.unCanUseCoupons"
-              :key="index"
-            >
-              <coupon
-                :item="item"
-                order="true"
-                can-use="false"
-              />
+            <view v-for="(item, index) in coupons.unCanUseCoupons" :key="index">
+              <coupon :item="item" order="true" can-use="false" />
             </view>
           </block>
           <view class="botm-empty" />
         </view>
-        <view
-          v-if="couponSts==1"
-          class="coupon-ok"
-        >
-          <text @tap="choosedCoupon">
-            确定
-          </text>
+        <view v-if="couponSts == 1" class="coupon-ok">
+          <text @tap="choosedCoupon"> 确定 </text>
         </view>
       </view>
     </view>
@@ -298,95 +230,178 @@
 </template>
 
 <script setup>
-const wxs = number()
-let orderEntry = '0' // 订单入口 0购物车 1立即购买
+const wxs = number();
+let orderEntry = "0"; // 订单入口 0购物车 1立即购买
 /**
  * 生命周期函数--监听页面加载
  */
 onLoad((options) => {
-  orderEntry = options.orderEntry
-})
+  orderEntry = options.orderEntry;
+  
+  // #ifdef MP-WEIXIN
+  wx.enableAlertBeforeUnload({
+    message: "订单已为您生成，确定要离开吗？",
+    success: (res) => {
+      console.log("success", res);
+    },
+    fail: (err) => {
+      console.log("fail", err);
+    },
+  });
+  // #endif
+});
 
-const userAddr = ref(null)
+let canLeave = false; // 标记是否允许离开
+/**
+ * 监听物理返回键或顶部返回按钮
+ */
+onBackPress((e) => {
+  // 如果已经允许离开，则不拦截
+  if (canLeave) return false;
+
+  // 如果是从返回按钮触发
+  if (e.from === "backbutton" || e.from === "navigateBack") {
+    uni.showModal({
+      title: "确认离开？",
+      content: "订单已为您生成，可以在“我的订单”中继续支付。",
+      cancelText: "退出",
+      cancelColor: "#999999",
+      confirmText: "继续支付",
+      confirmColor: "#4CAF50",
+      success: (res) => {
+        if (res.confirm) {
+          // 用户点击继续支付，不做任何操作
+        } else if (res.cancel) {
+          // 用户点击退出
+          canLeave = true;
+          uni.navigateBack();
+        }
+      },
+    });
+    return true; // 拦截默认返回行为
+  }
+  return false;
+});
+
+const userAddr = ref(null);
+const isOrderCreated = ref(false); // 订单是否已自动创建
+const orderNumbers = ref(""); // 存储已创建的订单号
 /**
  * 生命周期函数--监听页面显示
  */
 onShow(() => {
-  const pages = getCurrentPages()
-  const currPage = pages[pages.length - 1]
-  if (currPage.selAddress === 'yes') {
+  const pages = getCurrentPages();
+  const currPage = pages[pages.length - 1];
+  if (currPage.selAddress === "yes") {
     // 将携带的参数赋值
-    userAddr.value = currPage.item
+    userAddr.value = currPage.item;
   }
   // 获取订单数据
-  loadOrderData()
-})
+  loadOrderData();
+});
 
-let couponIds = []
-const coupons = ref({})
-const total = ref(0)
-const actualTotal = ref(0)
-const orderItems = ref([])
-const totalCount = ref(0)
-const transfee = ref(0)
-const shopReduce = ref('')
+let couponIds = [];
+const coupons = ref({});
+const total = ref(0);
+const actualTotal = ref(0);
+const orderItems = ref([]);
+const totalCount = ref(0);
+const transfee = ref(0);
+const shopReduce = ref("");
 /**
  * 加载订单数据
  */
 const loadOrderData = () => {
-  let addrId = 0
+  let addrId = 0;
   if (userAddr.value != null) {
-    addrId = userAddr.value.addrId
+    addrId = userAddr.value.addrId;
   }
   uni.showLoading({
-    mask: true
-  })
-  http.request({
-    url: '/p/order/confirm',
-    method: 'POST',
-    data: {
-      addrId,
-      orderItem: orderEntry === '1' ? JSON.parse(uni.getStorageSync('orderItem')) : undefined,
-      basketIds: orderEntry === '0' ? JSON.parse(uni.getStorageSync('basketIds')) : undefined,
-      couponIds,
-      userChangeCoupon: 1
-    }
-  })
+    mask: true,
+  });
+  http
+    .request({
+      url: "/p/order/confirm",
+      method: "POST",
+      data: {
+        addrId,
+        orderItem:
+          orderEntry === "1"
+            ? JSON.parse(uni.getStorageSync("orderItem"))
+            : undefined,
+        basketIds:
+          orderEntry === "0"
+            ? JSON.parse(uni.getStorageSync("basketIds"))
+            : undefined,
+        couponIds,
+        userChangeCoupon: 1,
+      },
+    })
     .then(({ data }) => {
-      uni.hideLoading()
-      let orderItemsData = []
-      data.shopCartOrders[0].shopCartItemDiscounts?.forEach(itemDiscount => {
-        orderItemsData = orderItems.value?.concat(itemDiscount.shopCartItems)
-      })
+      uni.hideLoading();
+      let orderItemsData = [];
+      data.shopCartOrders[0].shopCartItemDiscounts?.forEach((itemDiscount) => {
+        orderItemsData = orderItems.value?.concat(itemDiscount.shopCartItems);
+      });
       if (data.shopCartOrders[0].coupons) {
-        const canUseCoupons = []
-        const unCanUseCoupons = []
-        data.shopCartOrders[0].coupons?.forEach(coupon => {
+        const canUseCoupons = [];
+        const unCanUseCoupons = [];
+        data.shopCartOrders[0].coupons?.forEach((coupon) => {
           if (coupon.canUse) {
-            canUseCoupons.push(coupon)
+            canUseCoupons.push(coupon);
           } else {
-            unCanUseCoupons.push(coupon)
+            unCanUseCoupons.push(coupon);
           }
-        })
+        });
         coupons.value = {
           totalLength: data.shopCartOrders[0].coupons.length,
           canUseCoupons,
-          unCanUseCoupons
-        }
+          unCanUseCoupons,
+        };
       }
-      orderItems.value = orderItemsData
-      actualTotal.value = data.actualTotal
-      total.value = data.total
-      totalCount.value = data.totalCount
-      userAddr.value = data.userAddr
-      transfee.value = data.shopCartOrders[0].transfee
-      shopReduce.value = data.shopCartOrders[0].shopReduce
+      orderItems.value = orderItemsData;
+      actualTotal.value = data.actualTotal;
+      total.value = data.total;
+      totalCount.value = data.totalCount;
+      userAddr.value = data.userAddr;
+      transfee.value = data.shopCartOrders[0].transfee;
+      shopReduce.value = data.shopCartOrders[0].shopReduce;
+
+      // 核心改动：如果还没有创建订单且地址已选好，则进入结算页即自动创建“待支付”订单
+      if (!isOrderCreated.value && userAddr.value) {
+        autoSubmitOrder();
+      }
     })
-    .catch(err => {
-      uni.hideLoading()
-      chooseCouponErrHandle(err)
+    .catch((err) => {
+      uni.hideLoading();
+      chooseCouponErrHandle(err);
+    });
+};
+
+/**
+ * 自动提交订单（进入页面静默创建）
+ */
+const autoSubmitOrder = () => {
+  http
+    .request({
+      url: "/p/order/submit",
+      method: "POST",
+      data: {
+        orderShopParam: [
+          {
+            remarks: remarks.value,
+            shopId: 1,
+          },
+        ],
+      },
     })
-}
+    .then(({ data }) => {
+      isOrderCreated.value = true;
+      orderNumbers.value = data.orderNumbers;
+      // 此时订单已在数据库生成，状态为“待支付”
+      // 如果用户此时直接退出，订单也会保留在“待支付”列表中
+    });
+};
 
 /**
  * 优惠券选择出错处理方法
@@ -396,52 +411,62 @@ const chooseCouponErrHandle = (res) => {
   if (res.statusCode == 601) {
     uni.showToast({
       title: res.data,
-      icon: 'none',
+      icon: "none",
       duration: 3000,
       success: () => {
-        couponIds = []
-      }
-    })
+        couponIds = [];
+      },
+    });
     setTimeout(() => {
-      loadOrderData()
-    }, 2500)
+      loadOrderData();
+    }, 2500);
   }
-}
+};
 
 /**
- * 提交订单
+ * 提交订单按钮逻辑
  */
 const toPay = () => {
   if (!userAddr.value) {
     uni.showToast({
-      title: '请选择地址',
-      icon: 'none'
-    })
-    return
+      title: "请选择地址",
+      icon: "none",
+    });
+    return;
   }
-  submitOrder()
-}
 
-const remarks = ref('')
+  // 如果订单已经自动创建好了，直接执行支付逻辑
+  if (isOrderCreated.value) {
+    normalPay(orderNumbers.value);
+  } else {
+    // 兜底逻辑：如果之前自动创建失败，则手动创建并支付
+    submitOrder();
+  }
+};
+
+const remarks = ref("");
 const submitOrder = () => {
   uni.showLoading({
-    mask: true
-  })
-  http.request({
-    url: '/p/order/submit',
-    method: 'POST',
-    data: {
-      orderShopParam: [{
-        remarks: remarks.value,
-        shopId: 1
-      }]
-    }
-  })
-    .then(({ data }) => {
-      uni.hideLoading()
-      normalPay(data.orderNumbers)
+    mask: true,
+  });
+  http
+    .request({
+      url: "/p/order/submit",
+      method: "POST",
+      data: {
+        orderShopParam: [
+          {
+            remarks: remarks.value,
+            shopId: 1,
+          },
+        ],
+      },
     })
-}
+    .then(({ data }) => {
+      uni.hideLoading();
+      normalPay(data.orderNumbers);
+    });
+};
 
 /**
  * 模拟支付，直接提交成功
@@ -449,79 +474,86 @@ const submitOrder = () => {
  */
 const normalPay = (orderNumbers) => {
   uni.showLoading({
-    mask: true
-  })
-  http.request({
-    url: '/p/order/normalPay',
-    method: 'POST',
-    data: {
-      orderNumbers
-    }
-  })
+    mask: true,
+  });
+  http
+    .request({
+      url: "/p/order/normalPay",
+      method: "POST",
+      data: {
+        orderNumbers,
+      },
+    })
     .then(({ data }) => {
-      uni.hideLoading()
+      uni.hideLoading();
       if (data) {
         uni.showToast({
-          title: '模拟支付成功',
-          icon: 'none'
-        })
+          title: "模拟支付成功",
+          icon: "none",
+        });
         setTimeout(() => {
           uni.navigateTo({
-            url: '/pages/pay-result/pay-result?sts=1&orderNumbers=' + orderNumbers
-          })
-        }, 1200)
+            url:
+              "/pages/pay-result/pay-result?sts=1&orderNumbers=" + orderNumbers,
+          });
+        }, 1200);
       } else {
         uni.showToast({
-          title: '支付失败！',
-          icon: 'none'
-        })
+          title: "支付失败，请稍后在“我的订单”中完成支付",
+          icon: "none",
+        });
+        setTimeout(() => {
+          uni.redirectTo({
+            url: "/pages/orderList/orderList?sts=1",
+          });
+        }, 1500);
       }
-    })
-}
+    });
+};
 
-const couponSts = ref(1)
+const couponSts = ref(1);
 const changeCouponSts = (e) => {
-  couponSts.value = e.currentTarget.dataset.sts
-}
+  couponSts.value = e.currentTarget.dataset.sts;
+};
 
-const popupShow = ref(false)
+const popupShow = ref(false);
 const showCouponPopup = () => {
-  popupShow.value = true
-}
+  popupShow.value = true;
+};
 const closePopup = () => {
-  popupShow.value = false
-}
+  popupShow.value = false;
+};
 
 /**
  * 去地址页面
  */
 const toAddrListPage = () => {
   uni.navigateTo({
-    url: '/pages/delivery-address/delivery-address?order=0'
-  })
-}
+    url: "/pages/delivery-address/delivery-address?order=0",
+  });
+};
 
 /**
  * 确定选择好的优惠券
  */
 const choosedCoupon = () => {
-  loadOrderData()
-  popupShow.value = false
-}
+  loadOrderData();
+  popupShow.value = false;
+};
 
 /**
  * 优惠券子组件发过来
  */
 const checkCoupon = (e) => {
-  const index = couponIds.indexOf(e.detail.couponId)
+  const index = couponIds.indexOf(e.detail.couponId);
   if (index === -1) {
-    couponIds.push(e.detail.couponId)
+    couponIds.push(e.detail.couponId);
   } else {
-    couponIds.splice(index, 1)
+    couponIds.splice(index, 1);
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
-@use './submit-order.scss';
+@use "./submit-order.scss";
 </style>

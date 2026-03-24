@@ -2,69 +2,57 @@
   <view class="container">
     <!-- 头部菜单 -->
     <view class="order-tit">
-      <text
-        data-sts="0"
-        :class="sts==0?'on':''"
-        @tap="onStsTap"
-      >
+      <text data-sts="0" :class="sts == 0 ? 'on' : ''" @tap="onStsTap">
         全部
       </text>
-      <text
-        data-sts="1"
-        :class="sts==1?'on':''"
-        @tap="onStsTap"
-      >
+      <text data-sts="1" :class="sts == 1 ? 'on' : ''" @tap="onStsTap">
         待支付
       </text>
-      <text
-        data-sts="2"
-        :class="sts==2?'on':''"
-        @tap="onStsTap"
-      >
+      <text data-sts="2" :class="sts == 2 ? 'on' : ''" @tap="onStsTap">
         待发货
       </text>
-      <text
-        data-sts="3"
-        :class="sts==3?'on':''"
-        @tap="onStsTap"
-      >
+      <text data-sts="3" :class="sts == 3 ? 'on' : ''" @tap="onStsTap">
         待收货
       </text>
-      <text
-        data-sts="5"
-        :class="sts==5?'on':''"
-        @tap="onStsTap"
-      >
+      <text data-sts="5" :class="sts == 5 ? 'on' : ''" @tap="onStsTap">
         已完成
       </text>
     </view>
     <!-- end 头部菜单 -->
     <view class="main">
-      <view
-        v-if="list.length==0"
-        class="empty"
-      >
-        还没有任何相关订单
-      </view>
+      <view v-if="list.length == 0" class="empty"> 还没有任何相关订单 </view>
       <!-- 订单列表 -->
-      <block
-        v-for="(item, index) in list"
-        :key="index"
-      >
+      <block v-for="(item, index) in list" :key="index">
         <view class="prod-item">
           <view class="order-num">
             <text>订单编号：{{ item.orderNumber }}</text>
             <view class="order-state">
               <text
-                :class="'order-sts  ' + (item.status==1?'red':'') + '  ' + ((item.status==5||item.status==6)?'gray':'')"
+                :class="
+                  'order-sts  ' +
+                  (item.status == 1 ? 'red' : '') +
+                  '  ' +
+                  (item.status == 5 || item.status == 6 ? 'gray' : '')
+                "
               >
                 {{
-                  item.status == 1 ? '待支付' : (item.status == 2 ? '待发货' : (item.status == 3 ? '待收货' : (item.status == 5 ? '已完成' : '已取消')))
+                  item.status == 1
+                    ? "待支付" +
+                      (countdownList[item.orderNumber]
+                        ? " (" + countdownList[item.orderNumber] + ")"
+                        : "")
+                    : item.status == 2
+                    ? "待发货"
+                    : item.status == 3
+                    ? "待收货"
+                    : item.status == 5
+                    ? "已完成"
+                    : "已取消"
                 }}
               </text>
 
               <view
-                v-if="item.status==5 || item.status==6"
+                v-if="item.status == 5 || item.status == 6"
                 class="clear-btn"
               >
                 <image
@@ -79,11 +67,8 @@
 
           <!-- 商品列表 -->
           <!-- 一个订单单个商品的显示 -->
-          <block v-if="item.orderItemDtos.length==1">
-            <block
-              v-for="(prod, index2) in item.orderItemDtos"
-              :key="index2"
-            >
+          <block v-if="item.orderItemDtos.length == 1">
+            <block v-for="(prod, index2) in item.orderItemDtos" :key="index2">
               <view>
                 <view
                   class="item-cont"
@@ -102,9 +87,7 @@
                     </view>
                     <view class="price-nums">
                       <text class="prodprice">
-                        <text class="symbol">
-                          ￥
-                        </text>
+                        <text class="symbol"> ￥ </text>
                         <text class="big-num">
                           {{ wxs.parsePrice(prod.price)[0] }}
                         </text>
@@ -112,9 +95,7 @@
                           .{{ wxs.parsePrice(prod.price)[1] }}
                         </text>
                       </text>
-                      <text class="prodcount">
-                        x{{ prod.prodCount }}
-                      </text>
+                      <text class="prodcount"> x{{ prod.prodCount }} </text>
                     </view>
                   </view>
                 </view>
@@ -148,13 +129,13 @@
 
           <view class="total-num">
             <text class="prodcount">
-              共1件商品
+              共{{
+                item.orderItemDtos.reduce((acc, cur) => acc + cur.prodCount, 0)
+              }}件商品
             </text>
             <view class="prodprice">
               合计：
-              <text class="symbol">
-                ￥
-              </text>
+              <text class="symbol"> ￥ </text>
               <text class="big-num">
                 {{ wxs.parsePrice(item.actualTotal)[0] }}
               </text>
@@ -167,7 +148,7 @@
           <view class="prod-foot">
             <view class="btn">
               <text
-                v-if="item.status==1"
+                v-if="item.status == 1"
                 class="button"
                 :data-ordernum="item.orderNumber"
                 hover-class="none"
@@ -176,7 +157,7 @@
                 取消订单
               </text>
               <text
-                v-if="item.status==1"
+                v-if="item.status == 1"
                 class="button warn"
                 :data-ordernum="item.orderNumber"
                 hover-class="none"
@@ -185,7 +166,7 @@
                 付款
               </text>
               <text
-                v-if="item.status==3 || item.status==5"
+                v-if="item.status == 3 || item.status == 5"
                 class="button"
                 :data-ordernum="item.orderNumber"
                 hover-class="none"
@@ -194,7 +175,7 @@
                 查看物流
               </text>
               <text
-                v-if="item.status==3"
+                v-if="item.status == 3"
                 class="button warn"
                 :data-ordernum="item.orderNumber"
                 hover-class="none"
@@ -212,110 +193,160 @@
 </template>
 
 <script setup>
-const wxs = number()
+const wxs = number();
 
-const sts = ref(0)
+const countdownList = reactive({});
+let listTimer = null;
+
+/**
+ * 启动列表倒计时
+ */
+const startListCountdown = () => {
+  if (listTimer) clearInterval(listTimer);
+
+  const update = () => {
+    list.value.forEach((order) => {
+      if (order.status === 1 && order.createTime) {
+        const startTime = new Date(
+          order.createTime.replace(/-/g, "/")
+        ).getTime();
+        const endTime = startTime + 30 * 60 * 1000;
+        const now = new Date().getTime();
+        const diff = endTime - now;
+
+        if (diff <= 0) {
+          countdownList[order.orderNumber] = "00:00";
+        } else {
+          const minutes = Math.floor(diff / (60 * 1000));
+          const seconds = Math.floor((diff % (60 * 1000)) / 1000);
+          countdownList[order.orderNumber] = `${minutes
+            .toString()
+            .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+        }
+      }
+    });
+  };
+
+  update();
+  listTimer = setInterval(update, 1000);
+};
+
+const sts = ref(0);
 /**
  * 生命周期函数--监听页面加载
  */
 onLoad((options) => {
   if (options.sts) {
-    sts.value = options.sts
-    loadOrderData(options.sts, 1)
+    sts.value = options.sts;
+    loadOrderData(options.sts, 1);
   } else {
-    loadOrderData(0, 1)
+    loadOrderData(0, 1);
   }
-})
+});
 
-const current = ref(1)
-const pages = ref(0)
+/**
+ * 页面卸载，清除定时器
+ */
+onUnload(() => {
+  if (listTimer) clearInterval(listTimer);
+});
+
+const current = ref(1);
+const pages = ref(0);
 /**
  * 页面上拉触底事件的处理函数
  */
 onReachBottom(() => {
   if (current.value < pages.value) {
-    loadOrderData(sts.value, current.value + 1)
+    loadOrderData(sts.value, current.value + 1);
   }
-})
+});
 
-const list = ref([])
+const list = ref([]);
 /**
  * 加载订单数据
  */
 const loadOrderData = (sts, currentParam) => {
-  uni.showLoading() // 加载订单列表
-  http.request({
-    url: '/p/myOrder/myOrder',
-    method: 'GET',
-    data: {
-      current: currentParam,
-      size: 10,
-      status: sts
-    }
-  })
-    .then(({ data }) => {
-      let listParam = []
-      if (data.current === 1) {
-        listParam = data.records
-      } else {
-        listParam = list.value
-        Array.prototype.push.apply(listParam, data.records)
-      }
-      list.value = listParam
-      pages.value = data.pages
-      current.value = data.current
-      uni.hideLoading()
+  uni.showLoading(); // 加载订单列表
+  http
+    .request({
+      url: "/p/myOrder/myOrder",
+      method: "GET",
+      data: {
+        current: currentParam,
+        size: 10,
+        status: sts,
+      },
     })
-}
+    .then(({ data }) => {
+      let listParam = [];
+      if (data.current === 1) {
+        listParam = data.records;
+      } else {
+        listParam = list.value;
+        Array.prototype.push.apply(listParam, data.records);
+      }
+      list.value = listParam;
+      pages.value = data.pages;
+      current.value = data.current;
+      uni.hideLoading();
+
+      // 加载数据后，启动/更新列表倒计时
+      startListCountdown();
+    });
+};
 
 /**
  * 状态点击事件
  */
 const onStsTap = (e) => {
-  sts.value = e.currentTarget.dataset.sts
-  loadOrderData(sts.value, 1)
-}
+  sts.value = e.currentTarget.dataset.sts;
+  loadOrderData(sts.value, 1);
+};
 
 /**
  * 查看物流
  */
 const toDeliveryPage = (e) => {
   uni.navigateTo({
-    url: '/pages/express-delivery/express-delivery?orderNum=' + e.currentTarget.dataset.ordernum
-  })
-}
+    url:
+      "/pages/express-delivery/express-delivery?orderNum=" +
+      e.currentTarget.dataset.ordernum,
+  });
+};
 
 /**
  * 取消订单
  */
 const onCancelOrder = (e) => {
-  const ordernum = e.currentTarget.dataset.ordernum
+  const ordernum = e.currentTarget.dataset.ordernum;
   uni.showModal({
-    title: '',
-    content: '要取消此订单？',
-    confirmColor: '#3e62ad',
-    cancelColor: '#3e62ad',
-    cancelText: '否',
-    confirmText: '是',
+    title: "",
+    content: "要取消此订单？",
+    confirmColor: "#3e62ad",
+    cancelColor: "#3e62ad",
+    cancelText: "否",
+    confirmText: "是",
 
-    success (res) {
+    success(res) {
       if (res.confirm) {
         uni.showLoading({
-          mask: true
-        })
-        http.request({
-          url: '/p/myOrder/cancel/' + ordernum,
-          method: 'PUT',
-          data: {}
-        })
-          .then(() => {
-            loadOrderData(sts.value, 1)
-            uni.hideLoading()
+          mask: true,
+        });
+        http
+          .request({
+            url: "/p/myOrder/cancel/" + ordernum,
+            method: "PUT",
+            data: {},
           })
+          .then(() => {
+            loadOrderData(sts.value, 1);
+            uni.hideLoading();
+          });
       }
-    }
-  })
-}
+    },
+  });
+};
 
 /**
  * 模拟支付，直接提交成功
@@ -323,71 +354,77 @@ const onCancelOrder = (e) => {
  */
 const normalPay = (e) => {
   uni.showLoading({
-    mask: true
-  })
-  http.request({
-    url: '/p/order/normalPay',
-    method: 'POST',
-    data: {
-      orderNumbers: e.currentTarget.dataset.ordernum
-    }
-  })
+    mask: true,
+  });
+  http
+    .request({
+      url: "/p/order/normalPay",
+      method: "POST",
+      data: {
+        orderNumbers: e.currentTarget.dataset.ordernum,
+      },
+    })
     .then(({ data }) => {
-      uni.hideLoading()
+      uni.hideLoading();
       if (data) {
         uni.showToast({
-          title: '模拟支付成功',
-          icon: 'none'
-        })
+          title: "模拟支付成功",
+          icon: "none",
+        });
         setTimeout(() => {
-          uni.navigateTo({
-            url: '/pages/pay-result/pay-result?sts=1&orderNumbers=' + e.currentTarget.dataset.ordernum
-          })
-        }, 1200)
+          uni.redirectTo({
+            url:
+              "/pages/pay-result/pay-result?sts=1&orderNumbers=" +
+              e.currentTarget.dataset.ordernum,
+          });
+        }, 1200);
       } else {
         uni.showToast({
-          title: '支付失败！',
-          icon: 'none'
-        })
+          title: "支付失败！",
+          icon: "none",
+        });
       }
-    })
-}
+    });
+};
 
 /**
  * 查看订单详情
  */
 const toOrderDetailPage = (e) => {
   uni.navigateTo({
-    url: '/pages/order-detail/order-detail?orderNum=' + e.currentTarget.dataset.ordernum
-  })
-}
+    url:
+      "/pages/order-detail/order-detail?orderNum=" +
+      e.currentTarget.dataset.ordernum,
+  });
+};
 
 /**
  * 确认收货
  */
 const onConfirmReceive = (e) => {
   uni.showModal({
-    title: '',
-    content: '我已收到货？',
-    confirmColor: '#eb2444',
+    title: "",
+    content: "我已收到货？",
+    confirmColor: "#eb2444",
 
-    success (res) {
+    success(res) {
       if (res.confirm) {
         uni.showLoading({
-          mask: true
-        })
-        http.request({
-          url: '/p/myOrder/receipt/' + e.currentTarget.dataset.ordernum,
-          method: 'PUT'
-        })
-          .then(() => {
-            loadOrderData(sts.value, 1)
-            uni.hideLoading()
+          mask: true,
+        });
+        http
+          .request({
+            url: "/p/myOrder/receipt/" + e.currentTarget.dataset.ordernum,
+            method: "PUT",
           })
+          .then(() => {
+            loadOrderData(sts.value, 1);
+            uni.hideLoading();
+          });
       }
-    }
-  })
-}
+    },
+  });
+};
 
 /**
  * 删除已完成||已取消的订单
@@ -395,30 +432,30 @@ const onConfirmReceive = (e) => {
  */
 const delOrderList = (e) => {
   uni.showModal({
-    title: '',
-    content: '确定要删除此订单吗？',
-    confirmColor: '#eb2444',
+    title: "",
+    content: "确定要删除此订单吗？",
+    confirmColor: "#eb2444",
 
-    success (res) {
+    success(res) {
       if (res.confirm) {
-        const ordernum = e.currentTarget.dataset.ordernum
-        uni.showLoading()
+        const ordernum = e.currentTarget.dataset.ordernum;
+        uni.showLoading();
 
-        http.request({
-          url: '/p/myOrder/' + ordernum,
-          method: 'DELETE'
-        })
-          .then(() => {
-            loadOrderData(sts.value, 1)
-            uni.hideLoading()
+        http
+          .request({
+            url: "/p/myOrder/" + ordernum,
+            method: "DELETE",
           })
+          .then(() => {
+            loadOrderData(sts.value, 1);
+            uni.hideLoading();
+          });
       }
-    }
-  })
-}
-
+    },
+  });
+};
 </script>
 
 <style scoped lang="scss">
-@use './orderList.scss';
+@use "./orderList.scss";
 </style>
