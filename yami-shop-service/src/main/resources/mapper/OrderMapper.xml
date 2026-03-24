@@ -39,6 +39,9 @@
             <result column="prod_count" jdbcType="INTEGER" property="prodCount"/>
             <result column="price" jdbcType="DECIMAL" property="price"/>
             <result column="sku_name" jdbcType="VARCHAR" property="skuName"/>
+            <result column="oi_prod_id" jdbcType="BIGINT" property="prodId"/>
+            <result column="oi_order_item_id" jdbcType="BIGINT" property="orderItemId"/>
+            <result column="comm_sts" jdbcType="INTEGER" property="commSts"/>
         </collection>
     </resultMap>
 
@@ -50,6 +53,8 @@
         <result column="total_num" jdbcType="INTEGER" property="totalNum"/>
         <result column="transfee" jdbcType="DECIMAL" property="transfee"/>
         <result column="reduce_amount" jdbcType="DECIMAL" property="reduceAmount"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <association property="userAddrDto" javaType="com.yami.shop.bean.app.dto.UserAddrDto">
             <result column="addr_id" jdbcType="INTEGER" property="addrId"/>
             <result column="receiver" jdbcType="VARCHAR" property="receiver"/>
@@ -65,8 +70,10 @@
             <result column="pic" jdbcType="VARCHAR" property="pic"/>
             <result column="price" jdbcType="DECIMAL" property="price"/>
             <result column="product_total_amount" jdbcType="INTEGER" property="productTotalAmount"/>
-            <result column="prod_id" jdbcType="INTEGER" property="prodId"/>
+            <result column="oi_prod_id" jdbcType="INTEGER" property="prodId"/>
             <result column="sku_id" jdbcType="INTEGER" property="skuId"/>
+            <result column="oi_order_item_id" jdbcType="BIGINT" property="orderItemId"/>
+            <result column="comm_sts" jdbcType="INTEGER" property="commSts"/>
         </collection>
     </resultMap>
 
@@ -167,8 +174,8 @@
     </resultMap>
 
     <select id="getOrderByOrderNumber" resultType="com.yami.shop.bean.model.Order">
-    select * from tz_order o where o.order_number = #{orderNumber}
-  </select>
+        select * from tz_order o where o.order_number = #{orderNumber}
+    </select>
 
     <select id="listOrderAndOrderItems" resultMap="orderAndOrderItemMap">
     select o.*,oi.* from tz_order o left join tz_order_item oi on o.order_number = oi.order_number
@@ -184,7 +191,7 @@
     </update>
 
     <update id="confirmOrder">
-        update tz_order set `status`=5,finally_time = NOW() where order_id in
+        update tz_order set `status`=5,finally_time = NOW(), update_time = NOW() where order_id in
         <foreach collection="orders" item="order" open="(" close=")" separator=",">
             #{order.orderId}
         </foreach>
@@ -289,12 +296,20 @@
     </select>
 
     <select id="listMyOrderByUserIdAndStatus" resultMap="MyOrderMap">
-        SELECT o.actual_total,oi.pic,oi.price,oi.prod_name,oi.sku_name,oi.prod_count,o.status,o.order_number
+        SELECT o.actual_total,oi.pic,oi.price,oi.prod_name,oi.sku_name,oi.prod_count,o.status,o.order_number,
+               oi.prod_id as oi_prod_id, oi.order_item_id as oi_order_item_id, oi.comm_sts
         FROM (
         SELECT * FROM tz_order temp
         WHERE temp.user_id = #{userId} and temp.delete_status = 0
         <if test="status != null and status != 0">
-            AND temp.status = #{status}
+            <choose>
+                <when test="status == 5">
+                    AND temp.status IN (4,5)
+                </when>
+                <otherwise>
+                    AND temp.status = #{status}
+                </otherwise>
+            </choose>
         </if>
         ORDER BY temp.create_time DESC
         LIMIT #{adapter.begin} , #{adapter.size}
@@ -307,7 +322,14 @@
         select count(0) from tz_order o
         where o.user_id = #{userId} and o.delete_status = 0
         <if test="status != null and status != 0">
-            and o.status = #{status}
+            <choose>
+                <when test="status == 5">
+                    and o.status IN (4,5)
+                </when>
+                <otherwise>
+                    and o.status = #{status}
+                </otherwise>
+            </choose>
         </if>
     </select>
 

@@ -220,6 +220,13 @@ Page({
     })
   },
 
+
+  toProdCommPage: function (e) {
+    wx.navigateTo({
+      url: '/pages/prod-comm/prod-comm?orderNumber=' + e.currentTarget.dataset.ordernum
+    })
+  },
+
   /**
    * 确认收货
    */

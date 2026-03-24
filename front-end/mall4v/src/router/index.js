@@ -152,9 +152,6 @@ router.beforeEach((to, from, next) => {
 
 function filterMenuList (menuList = []) {
   return menuList.filter(item => {
-    if (item.name === '评论管理' || item.url === 'prod/prodComm') {
-      return false
-    }
     if (item.list && item.list.length > 0) {
       item.list = filterMenuList(item.list)
     }

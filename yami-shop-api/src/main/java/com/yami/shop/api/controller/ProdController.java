@@ -10,15 +10,20 @@
 
 package com.yami.shop.api.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.yami.shop.bean.app.dto.ProdCommDto;
 import com.yami.shop.bean.app.dto.ProductDto;
 import com.yami.shop.bean.app.dto.TagProductDto;
+import com.yami.shop.bean.model.ProdComm;
 import com.yami.shop.bean.model.Product;
 import com.yami.shop.bean.model.Sku;
 import com.yami.shop.bean.model.Transport;
 import com.yami.shop.common.response.ServerResponseEntity;
 import com.yami.shop.common.util.Json;
 import com.yami.shop.common.util.PageParam;
+import com.yami.shop.service.ProdCommService;
 import com.yami.shop.service.ProductService;
 import com.yami.shop.service.SkuService;
 import com.yami.shop.service.TransportService;
@@ -29,6 +34,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import cn.hutool.core.bean.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,6 +59,16 @@ public class ProdController {
 
     @Autowired
     private TransportService transportService;
+
+    @Autowired
+    private ProdCommService prodCommService;
+
+
+    @GetMapping("/prodComm/prod/{prodId}")
+    @Operation(summary = "根据商品ID查询评价")
+    public ServerResponseEntity<IPage<ProdCommDto>> getProdCommByProdId(@PathVariable Long prodId, Page<ProdCommDto> page) {
+        return ServerResponseEntity.success(prodCommService.getProdCommDtoPageByProdId(page, prodId));
+    }
 
 
     @GetMapping("/pageProd")

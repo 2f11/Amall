@@ -20,7 +20,7 @@
   text {
     display: block;
     font-size: 28rpx;
-    color: 999;
+    color: #999;
     width: 100rpx;
     text-align: center;
   }
@@ -39,8 +39,6 @@
   .item-cont {
     .prod-pic {
       image {
-        width: 180rpx;
-        height: 180rpx;
         width: 100%;
         height: 100%;
       }
@@ -59,22 +57,10 @@
     align-items: center;
     padding: 20rpx 30rpx;
     border-radius: 10rpx;
-    display: -webkit-flex;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
     background: #fafafa;
     .prod-info {
-      margin-left: 10rpx;
-      font-size: 28rpx;
-      width: 100%;
-      position: relative;
-      height: 160rpx;
-      -webkit-flex: 1;
-      -ms-flex: 1;
-      -webkit-box-flex: 1;
-      -moz-box-flex: 1;
       flex: 1;
+      margin-left: 20rpx;
       .prodname {
         font-size: 28rpx;
         line-height: 36rpx;
@@ -144,13 +130,8 @@
   .price-nums {
     .prodprice {
       color: #333;
-      position: absolute;
-      bottom: 0;
     }
     .prodcount {
-      position: absolute;
-      bottom: 5rpx;
-      right: 0;
       color: #999;
       font-family: verdana;
     }
@@ -180,13 +161,6 @@
   .order-sts.gray {
     color: #999;
   }
-}
-.other-button-hover {
-  background-color: blue;
-}
-.button-hover {
-  background-color: red;
-  background-color: blue;
 }
 .button {
   margin-top: 20rpx;

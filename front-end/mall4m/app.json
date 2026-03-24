@@ -15,6 +15,7 @@
         "pages/pay-result/pay-result",
         "pages/search-prod-show/search-prod-show",
         "pages/prod/prod",
+        "pages/prod-comm/prod-comm",
         "pages/login/login",
         "pages/prod-classify/prod-classify",
         "pages/recent-news/recent-news",

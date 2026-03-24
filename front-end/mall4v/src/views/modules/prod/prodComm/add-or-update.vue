@@ -36,7 +36,7 @@
               :key="item"
               alt=""
               max-width="100%"
-              :src="dialogImageUrl + item"
+              :src="item"
             >
           </div>
         </el-form-item>
@@ -165,6 +165,7 @@ const dataForm = ref({
   score: null,
   usefulCounts: null,
   photoJson: null,
+  pics: [],
   isAnonymous: null,
   status: null
 })
@@ -181,7 +182,10 @@ const init = (prodCommId, isEditParam) => {
         params: http.adornParams()
       })
         .then(({ data }) => {
-          dataForm.value = data
+          dataForm.value = {
+            ...data,
+            pics: data.pics ? data.pics.split(',') : []
+          }
         })
     }
   })

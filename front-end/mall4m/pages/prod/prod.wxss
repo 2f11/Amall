@@ -881,6 +881,67 @@ img {
 .pup-sku-footer .btn.buy {
   background: #eb2444;
   color: #fff;
+
+.comment {
+  margin: 20rpx;
+  background: #ffffff;
+  border-radius: 10rpx;
+  padding: 20rpx;
+}
+
+.comment-hd {
+  display: flex;
+  align-items: center;
+}
+
+.comment-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #111;
+}
+
+.comment-meta {
+  margin-left: 14rpx;
+  font-size: 22rpx;
+  color: #999;
+}
+
+.comment-more {
+  margin-left: auto;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.comment-bd {
+  margin-top: 14rpx;
+}
+
+.comment-item {
+  padding: 10rpx 0;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.comment-item:first-child {
+  border-top: none;
+}
+
+.comment-user {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.comment-content {
+  margin-top: 6rpx;
+  font-size: 26rpx;
+  color: #222;
+}
+
+.comment-empty {
+  padding: 14rpx 0;
+  font-size: 24rpx;
+  color: #999;
+}
+  color: #fff;
 }
 
 .pup-sku-footer.gray .btn.cart, .pup-sku-footer.gray .btn.buy{

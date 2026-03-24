@@ -15,6 +15,7 @@ import com.yami.shop.bean.model.OrderItem;
 import com.yami.shop.dao.OrderItemMapper;
 import com.yami.shop.service.OrderItemService;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,12 @@ public class OrderItemServiceImpl extends ServiceImpl<OrderItemMapper, OrderItem
 	public List<OrderItem> getOrderItemsByOrderNumber(String orderNumber) {
 		return orderItemMapper.listByOrderNumber(orderNumber);
 	}
+
+    @Override
+    @CacheEvict(cacheNames = "OrderItems", key = "#orderNumber")
+    public void updateOrderItemAndClearCache(OrderItem orderItem, String orderNumber) {
+        orderItemMapper.updateById(orderItem);
+    }
 
 
 }

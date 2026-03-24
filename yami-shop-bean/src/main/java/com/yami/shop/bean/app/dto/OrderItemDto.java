@@ -10,6 +10,7 @@
 
 package com.yami.shop.bean.app.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -21,5 +22,11 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class OrderItemDto extends ProductItemDto implements Serializable {
+
+    @Schema(description = "订单项ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    private Long orderItemId;
+
+    @Schema(description = "评论状态： 0 未评价  1 已评价" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    private Integer commSts;
 
 }

@@ -38,4 +38,13 @@ public class MyOrderItemDto {
     @Schema(description = "skuName" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String skuName;
 
+    @Schema(description = "产品ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    private Long prodId;
+
+    @Schema(description = "订单项ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    private Long orderItemId;
+
+    @Schema(description = "评论状态： 0 未评价  1 已评价" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    private Integer commSts;
+
 }

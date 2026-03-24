@@ -32,7 +32,7 @@
   	</foreach>
   </insert>
 
-  <select id="listByOrderNumber" resultType="com.yami.shop.bean.model.OrderItem">
+  <select id="listByOrderNumber" resultMap="BaseResultMap">
   	select * from tz_order_item where order_number = #{orderNumber}
   </select>
 </mapper>

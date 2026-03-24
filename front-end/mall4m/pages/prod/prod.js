@@ -137,6 +137,8 @@ Page({
           skuList: res.skuList,
           pic: res.pic
         });
+        this.getProdCommData()
+        this.getProdCommPage()
         // 获取优惠券
         //this.getCouponList();
         // 组装sku
@@ -484,6 +486,43 @@ Page({
       skuShow: false,
       commentShow: false
     });
+  },
+
+  getProdCommData: function () {
+    http.request({
+      url: '/prodComm/prodCommData',
+      method: 'GET',
+      data: {
+        prodId: this.data.prodId
+      },
+      callBack: (res) => {
+        this.setData({
+          prodCommData: res || {}
+        })
+      }
+    })
+  },
+
+  getProdCommPage: function () {
+    http.request({
+      url: '/prodComm/prodCommPageByProd',
+      method: 'GET',
+      data: {
+        prodId: this.data.prodId,
+        evaluate: -1,
+        current: 1,
+        size: 3
+      },
+      callBack: (res) => {
+        this.setData({
+          prodCommPage: res || {
+            current: 0,
+            pages: 0,
+            records: []
+          }
+        })
+      }
+    })
   },
 
 

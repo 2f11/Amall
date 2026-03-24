@@ -1,77 +1,41 @@
 export const tableOption = {
-  searchMenuSpan: 6,
-  columnBtn: false,
   border: true,
   index: true,
   indexLabel: '序号',
   stripe: true,
   menuAlign: 'center',
   align: 'center',
-  addBtn: false,
   editBtn: false,
   delBtn: false,
+  addBtn: false,
   column: [
+    { label: '商品ID', prop: 'prodId' },
+    { label: '用户ID', prop: 'userId' },
+    { label: '评分', prop: 'score', type: 'rate' },
+    { label: '内容', prop: 'content' },
     {
-      label: '商品名',
-      prop: 'prodName',
-      search: true
+      label: '图片',
+      prop: 'pics',
+      type: 'upload',
+      listType: 'picture-card',
+      loadText: '附件上传中，请稍等',
+      span: 24,
+      propsHttp: {
+        url: '/admin/file/upload',
+        res: 'data'
+      },
+      action: '/admin/file/upload'
     },
     {
-      label: '用户昵称',
-      prop: 'nickName',
-      slot: true
-    },
-    {
-      label: '记录时间',
-      prop: 'recTime',
-      width: '200'
-    },
-    {
-      label: '回复时间',
-      slot: true,
-      prop: 'replyTime',
-      width: '200',
-      dicData: [
-        {
-          label: '无',
-          value: ''
-        }
-      ]
-    },
-    {
-      label: '评价得分',
-      prop: 'score'
-    },
-    {
-      label: '是否匿名',
-      prop: 'isAnonymous',
-      dicData: [
-        {
-          label: '否',
-          value: 0
-        }, {
-          label: '是',
-          value: 1
-        }
-      ]
-    },
-    {
+      label: '状态',
       prop: 'status',
-      label: '审核状态',
-      search: true,
       type: 'select',
       dicData: [
-        {
-          label: '待审核',
-          value: 0
-        }, {
-          label: '审核通过',
-          value: 1
-        }, {
-          label: '审核未通过',
-          value: -1
-        }
+        { label: '未审核', value: 0 },
+        { label: '已审核', value: 1 },
+        { label: '审核失败', value: -1 }
       ]
-    }
+    },
+    { label: '评价时间', prop: 'recTime', type: 'datetime', format: 'yyyy-MM-dd hh:mm:ss', valueFormat: 'yyyy-MM-dd hh:mm:ss' }
   ]
 }

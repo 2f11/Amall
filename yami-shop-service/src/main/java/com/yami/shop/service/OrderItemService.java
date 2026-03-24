@@ -28,4 +28,11 @@ public interface OrderItemService extends IService<OrderItem> {
 	 */
 	List<OrderItem> getOrderItemsByOrderNumber(String orderNumber);
 
+    /**
+     * 更新订单项并清理缓存
+     * @param orderItem
+     * @param orderNumber
+     */
+    void updateOrderItemAndClearCache(OrderItem orderItem, String orderNumber);
+
 }

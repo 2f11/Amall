@@ -16,6 +16,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yami.shop.bean.app.dto.OrderCountData;
+import com.yami.shop.bean.app.dto.OrderShopDto;
 import com.yami.shop.bean.app.dto.ShopCartOrderMergerDto;
 import com.yami.shop.bean.event.CancelOrderEvent;
 import com.yami.shop.bean.event.ReceiptOrderEvent;

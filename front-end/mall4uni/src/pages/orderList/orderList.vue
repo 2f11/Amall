@@ -2,69 +2,54 @@
   <view class="container">
     <!-- 头部菜单 -->
     <view class="order-tit">
-      <text
-        data-sts="0"
-        :class="sts==0?'on':''"
-        @tap="onStsTap"
-      >
+      <text data-sts="0" :class="sts == 0 ? 'on' : ''" @tap="onStsTap">
         全部
       </text>
-      <text
-        data-sts="1"
-        :class="sts==1?'on':''"
-        @tap="onStsTap"
-      >
+      <text data-sts="1" :class="sts == 1 ? 'on' : ''" @tap="onStsTap">
         待支付
       </text>
-      <text
-        data-sts="2"
-        :class="sts==2?'on':''"
-        @tap="onStsTap"
-      >
+      <text data-sts="2" :class="sts == 2 ? 'on' : ''" @tap="onStsTap">
         待发货
       </text>
-      <text
-        data-sts="3"
-        :class="sts==3?'on':''"
-        @tap="onStsTap"
-      >
+      <text data-sts="3" :class="sts == 3 ? 'on' : ''" @tap="onStsTap">
         待收货
       </text>
-      <text
-        data-sts="5"
-        :class="sts==5?'on':''"
-        @tap="onStsTap"
-      >
+      <text data-sts="5" :class="sts == 5 ? 'on' : ''" @tap="onStsTap">
         已完成
       </text>
     </view>
     <!-- end 头部菜单 -->
     <view class="main">
-      <view
-        v-if="list.length==0"
-        class="empty"
-      >
-        还没有任何相关订单
-      </view>
+      <view v-if="list.length == 0" class="empty"> 还没有任何相关订单 </view>
       <!-- 订单列表 -->
-      <block
-        v-for="(item, index) in list"
-        :key="index"
-      >
+      <block v-for="(item, index) in list" :key="index">
         <view class="prod-item">
           <view class="order-num">
             <text>订单编号：{{ item.orderNumber }}</text>
             <view class="order-state">
               <text
-                :class="'order-sts  ' + (item.status==1?'red':'') + '  ' + ((item.status==5||item.status==6)?'gray':'')"
+                :class="
+                  'order-sts  ' +
+                  (item.status == 1 ? 'red' : '') +
+                  '  ' +
+                  (item.status == 5 || item.status == 6 ? 'gray' : '')
+                "
               >
                 {{
-                  item.status == 1 ? '待支付' : (item.status == 2 ? '待发货' : (item.status == 3 ? '待收货' : (item.status == 5 ? '已完成' : '已取消')))
+                  item.status == 1
+                    ? "待支付"
+                    : item.status == 2
+                    ? "待发货"
+                    : item.status == 3
+                    ? "待收货"
+                    : item.status == 4 || item.status == 5
+                    ? "已完成"
+                    : "已取消"
                 }}
               </text>
 
               <view
-                v-if="item.status==5 || item.status==6"
+                v-if="item.status == 5 || item.status == 6"
                 class="clear-btn"
               >
                 <image
@@ -79,11 +64,8 @@
 
           <!-- 商品列表 -->
           <!-- 一个订单单个商品的显示 -->
-          <block v-if="item.orderItemDtos.length==1">
-            <block
-              v-for="(prod, index2) in item.orderItemDtos"
-              :key="index2"
-            >
+          <block v-if="item.orderItemDtos.length == 1">
+            <block v-for="(prod, index2) in item.orderItemDtos" :key="index2">
               <view>
                 <view
                   class="item-cont"
@@ -102,9 +84,7 @@
                     </view>
                     <view class="price-nums">
                       <text class="prodprice">
-                        <text class="symbol">
-                          ￥
-                        </text>
+                        <text class="symbol"> ￥ </text>
                         <text class="big-num">
                           {{ wxs.parsePrice(prod.price)[0] }}
                         </text>
@@ -112,9 +92,7 @@
                           .{{ wxs.parsePrice(prod.price)[1] }}
                         </text>
                       </text>
-                      <text class="prodcount">
-                        x{{ prod.prodCount }}
-                      </text>
+                      <text class="prodcount"> x{{ prod.prodCount }} </text>
                     </view>
                   </view>
                 </view>
@@ -147,14 +125,10 @@
           </block>
 
           <view class="total-num">
-            <text class="prodcount">
-              共1件商品
-            </text>
+            <text class="prodcount"> 共1件商品 </text>
             <view class="prodprice">
               合计：
-              <text class="symbol">
-                ￥
-              </text>
+              <text class="symbol"> ￥ </text>
               <text class="big-num">
                 {{ wxs.parsePrice(item.actualTotal)[0] }}
               </text>
@@ -167,7 +141,7 @@
           <view class="prod-foot">
             <view class="btn">
               <text
-                v-if="item.status==1"
+                v-if="item.status == 1"
                 class="button"
                 :data-ordernum="item.orderNumber"
                 hover-class="none"
@@ -176,7 +150,7 @@
                 取消订单
               </text>
               <text
-                v-if="item.status==1"
+                v-if="item.status == 1"
                 class="button warn"
                 :data-ordernum="item.orderNumber"
                 hover-class="none"
@@ -185,7 +159,7 @@
                 付款
               </text>
               <text
-                v-if="item.status==3 || item.status==5"
+                v-if="item.status == 3 || item.status == 4"
                 class="button"
                 :data-ordernum="item.orderNumber"
                 hover-class="none"
@@ -194,13 +168,25 @@
                 查看物流
               </text>
               <text
-                v-if="item.status==3"
+                v-if="item.status == 3"
                 class="button warn"
                 :data-ordernum="item.orderNumber"
                 hover-class="none"
                 @tap="onConfirmReceive"
               >
                 确认收货
+              </text>
+              <text
+                v-if="
+                  item.status == 4 &&
+                  item.orderItemDtos.some((oi) => oi.commSts != 1)
+                "
+                class="button warn"
+                :data-item="item"
+                hover-class="none"
+                @tap="handleGoToReview"
+              >
+                去评价
               </text>
             </view>
           </view>
@@ -212,110 +198,177 @@
 </template>
 
 <script setup>
-const wxs = number()
+import { ref } from "vue";
+import { onLoad, onShow, onReachBottom } from "@dcloudio/uni-app";
+import http from "@/utils/http";
 
-const sts = ref(0)
+const wxs = number();
+
+const list = ref([]);
+const current = ref(1);
+const pages = ref(0);
+const sts = ref(0);
+
 /**
  * 生命周期函数--监听页面加载
  */
 onLoad((options) => {
   if (options.sts) {
-    sts.value = options.sts
-    loadOrderData(options.sts, 1)
-  } else {
-    loadOrderData(0, 1)
+    sts.value = Number(options.sts);
   }
-})
+});
 
-const current = ref(1)
-const pages = ref(0)
+/**
+ * 页面显示时刷新当前tab
+ */
+onShow(() => {
+  loadOrderData();
+});
+
 /**
  * 页面上拉触底事件的处理函数
  */
 onReachBottom(() => {
   if (current.value < pages.value) {
-    loadOrderData(sts.value, current.value + 1)
+    loadOrderList(sts.value, current.value + 1);
   }
-})
+});
 
-const list = ref([])
 /**
  * 加载订单数据
  */
-const loadOrderData = (sts, currentParam) => {
-  uni.showLoading() // 加载订单列表
-  http.request({
-    url: '/p/myOrder/myOrder',
-    method: 'GET',
-    data: {
-      current: currentParam,
-      size: 10,
-      status: sts
-    }
-  })
-    .then(({ data }) => {
-      let listParam = []
-      if (data.current === 1) {
-        listParam = data.records
-      } else {
-        listParam = list.value
-        Array.prototype.push.apply(listParam, data.records)
+const loadOrderData = () => {
+  current.value = 1;
+  list.value = [];
+  loadOrderList(sts.value, 1);
+};
+
+/**
+ * 加载订单数据
+ */
+const loadOrderList = (sts, currentParam) => {
+  uni.showLoading();
+
+  const requestPage = (status) => {
+    return http.request({
+      url: "/p/myOrder/myOrder",
+      method: "GET",
+      data: {
+        current: currentParam,
+        size: 10,
+        status,
+      },
+    });
+  };
+
+  const resolvePageData = (pageData) => {
+    return {
+      current: pageData?.current || currentParam,
+      pages: pageData?.pages || 0,
+      records: pageData?.records || [],
+    };
+  };
+
+  const mergeRecords = (records1, records2) => {
+    const map = new Map();
+    [...records1, ...records2].forEach((item) => {
+      if (item?.orderNumber) {
+        map.set(item.orderNumber, item);
       }
-      list.value = listParam
-      pages.value = data.pages
-      current.value = data.current
-      uni.hideLoading()
+    });
+    return Array.from(map.values());
+  };
+
+  const onSuccess = (records, totalPages, currentPage) => {
+    let listParam = [];
+    if (currentPage === 1) {
+      listParam = records;
+    } else {
+      listParam = list.value;
+      Array.prototype.push.apply(listParam, records);
+    }
+    list.value = listParam;
+    pages.value = totalPages;
+    current.value = currentPage;
+  };
+
+  if (Number(sts) === 5) {
+    Promise.all([requestPage(5), requestPage(4)])
+      .then(([res5, res4]) => {
+        const page5 = resolvePageData(res5?.data);
+        const page4 = resolvePageData(res4?.data);
+        const records = mergeRecords(page5.records, page4.records);
+        onSuccess(records, Math.max(page5.pages, page4.pages), currentParam);
+        uni.hideLoading();
+      })
+      .catch(() => {
+        uni.hideLoading();
+      });
+    return;
+  }
+
+  requestPage(sts)
+    .then(({ data }) => {
+      const page = resolvePageData(data);
+      onSuccess(page.records, page.pages, page.current);
+      uni.hideLoading();
     })
-}
+    .catch(() => {
+      uni.hideLoading();
+    });
+};
 
 /**
  * 状态点击事件
  */
 const onStsTap = (e) => {
-  sts.value = e.currentTarget.dataset.sts
-  loadOrderData(sts.value, 1)
-}
+  sts.value = Number(e.currentTarget.dataset.sts);
+  loadOrderData(sts.value, 1);
+};
 
 /**
  * 查看物流
  */
 const toDeliveryPage = (e) => {
   uni.navigateTo({
-    url: '/pages/express-delivery/express-delivery?orderNum=' + e.currentTarget.dataset.ordernum
-  })
-}
+    url:
+      "/pages/express-delivery/express-delivery?orderNum=" +
+      e.currentTarget.dataset.ordernum,
+  });
+};
 
 /**
  * 取消订单
  */
 const onCancelOrder = (e) => {
-  const ordernum = e.currentTarget.dataset.ordernum
+  const ordernum = e.currentTarget.dataset.ordernum;
   uni.showModal({
-    title: '',
-    content: '要取消此订单？',
-    confirmColor: '#3e62ad',
-    cancelColor: '#3e62ad',
-    cancelText: '否',
-    confirmText: '是',
+    title: "",
+    content: "要取消此订单？",
+    confirmColor: "#3e62ad",
+    cancelColor: "#3e62ad",
+    cancelText: "否",
+    confirmText: "是",
 
-    success (res) {
+    success(res) {
       if (res.confirm) {
         uni.showLoading({
-          mask: true
-        })
-        http.request({
-          url: '/p/myOrder/cancel/' + ordernum,
-          method: 'PUT',
-          data: {}
-        })
-          .then(() => {
-            loadOrderData(sts.value, 1)
-            uni.hideLoading()
+          mask: true,
+        });
+        http
+          .request({
+            url: "/p/myOrder/cancel/" + ordernum,
+            method: "PUT",
+            data: {},
           })
+          .then(() => {
+            loadOrderData(sts.value, 1);
+            uni.hideLoading();
+          });
       }
-    }
-  })
-}
+    },
+  });
+};
 
 /**
  * 模拟支付，直接提交成功
@@ -323,71 +376,105 @@ const onCancelOrder = (e) => {
  */
 const normalPay = (e) => {
   uni.showLoading({
-    mask: true
-  })
-  http.request({
-    url: '/p/order/normalPay',
-    method: 'POST',
-    data: {
-      orderNumbers: e.currentTarget.dataset.ordernum
-    }
-  })
+    mask: true,
+  });
+  http
+    .request({
+      url: "/p/order/normalPay",
+      method: "POST",
+      data: {
+        orderNumbers: e.currentTarget.dataset.ordernum,
+      },
+    })
     .then(({ data }) => {
-      uni.hideLoading()
+      uni.hideLoading();
       if (data) {
         uni.showToast({
-          title: '模拟支付成功',
-          icon: 'none'
-        })
+          title: "模拟支付成功",
+          icon: "none",
+        });
         setTimeout(() => {
           uni.navigateTo({
-            url: '/pages/pay-result/pay-result?sts=1&orderNumbers=' + e.currentTarget.dataset.ordernum
-          })
-        }, 1200)
+            url:
+              "/pages/pay-result/pay-result?sts=1&orderNumbers=" +
+              e.currentTarget.dataset.ordernum,
+          });
+        }, 1200);
       } else {
         uni.showToast({
-          title: '支付失败！',
-          icon: 'none'
-        })
+          title: "支付失败！",
+          icon: "none",
+        });
       }
-    })
-}
+    });
+};
 
 /**
  * 查看订单详情
  */
 const toOrderDetailPage = (e) => {
   uni.navigateTo({
-    url: '/pages/order-detail/order-detail?orderNum=' + e.currentTarget.dataset.ordernum
-  })
-}
+    url:
+      "/pages/order-detail/order-detail?orderNum=" +
+      e.currentTarget.dataset.ordernum,
+  });
+};
+
+/**
+ * 去评价
+ */
+const toProdCommPage = (e) => {
+  const orderItem = e.currentTarget.dataset.orderitem;
+  uni.navigateTo({
+    url: `/pages/prod-comm/prod-comm?orderItem=${encodeURIComponent(
+      JSON.stringify(orderItem)
+    )}`,
+  });
+};
+
+/**
+ * 处理去评价按钮点击事件
+ */
+const handleGoToReview = (e) => {
+  const item = e.currentTarget.dataset.item;
+  // 查找第一个未评价的商品
+  const unreviewedItem = item.orderItemDtos.find((oi) => oi.commSts != 1);
+  if (unreviewedItem) {
+    uni.navigateTo({
+      url: `/pages/prod-comm/prod-comm?orderItem=${encodeURIComponent(
+        JSON.stringify(unreviewedItem)
+      )}`,
+    });
+  }
+};
 
 /**
  * 确认收货
  */
 const onConfirmReceive = (e) => {
   uni.showModal({
-    title: '',
-    content: '我已收到货？',
-    confirmColor: '#eb2444',
+    title: "",
+    content: "我已收到货？",
+    confirmColor: "#eb2444",
 
-    success (res) {
+    success(res) {
       if (res.confirm) {
         uni.showLoading({
-          mask: true
-        })
-        http.request({
-          url: '/p/myOrder/receipt/' + e.currentTarget.dataset.ordernum,
-          method: 'PUT'
-        })
-          .then(() => {
-            loadOrderData(sts.value, 1)
-            uni.hideLoading()
+          mask: true,
+        });
+        http
+          .request({
+            url: "/p/myOrder/receipt/" + e.currentTarget.dataset.ordernum,
+            method: "PUT",
           })
+          .then(() => {
+            loadOrderData(sts.value, 1);
+            uni.hideLoading();
+          });
       }
-    }
-  })
-}
+    },
+  });
+};
 
 /**
  * 删除已完成||已取消的订单
@@ -395,30 +482,30 @@ const onConfirmReceive = (e) => {
  */
 const delOrderList = (e) => {
   uni.showModal({
-    title: '',
-    content: '确定要删除此订单吗？',
-    confirmColor: '#eb2444',
+    title: "",
+    content: "确定要删除此订单吗？",
+    confirmColor: "#eb2444",
 
-    success (res) {
+    success(res) {
       if (res.confirm) {
-        const ordernum = e.currentTarget.dataset.ordernum
-        uni.showLoading()
+        const ordernum = e.currentTarget.dataset.ordernum;
+        uni.showLoading();
 
-        http.request({
-          url: '/p/myOrder/' + ordernum,
-          method: 'DELETE'
-        })
-          .then(() => {
-            loadOrderData(sts.value, 1)
-            uni.hideLoading()
+        http
+          .request({
+            url: "/p/myOrder/" + ordernum,
+            method: "DELETE",
           })
+          .then(() => {
+            loadOrderData(sts.value, 1);
+            uni.hideLoading();
+          });
       }
-    }
-  })
-}
-
+    },
+  });
+};
 </script>
 
 <style scoped lang="scss">
-@use './orderList.scss';
+@use "./orderList.scss";
 </style>

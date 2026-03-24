@@ -84,26 +84,28 @@ public class MyOrderController {
         UserAddrOrder userAddrOrder = userAddrOrderService.getById(order.getAddrOrderId());
         UserAddrDto userAddrDto = BeanUtil.copyProperties(userAddrOrder, UserAddrDto.class);
         List<OrderItem> orderItems = orderItemService.getOrderItemsByOrderNumber(orderNumber);
-        List<OrderItemDto> orderItemList = BeanUtil.copyToList(orderItems, OrderItemDto.class);
+        List<OrderItemDto> orderItemList = orderItems.stream().map(oi -> {
+            OrderItemDto dto = BeanUtil.copyProperties(oi, OrderItemDto.class);
+            dto.setCommSts(oi.getCommSts()); // 显式设置评价状态，防止拷贝丢失
+            return dto;
+        }).collect(java.util.stream.Collectors.toList());
 
         orderShopDto.setShopId(shopDetail.getShopId());
         orderShopDto.setShopName(shopDetail.getShopName());
         orderShopDto.setActualTotal(order.getActualTotal());
+        orderShopDto.setTotal(order.getTotal());
+        orderShopDto.setRemarks(order.getRemarks());
+        orderShopDto.setCreateTime(order.getCreateTime());
+        orderShopDto.setStatus(order.getStatus());
+        orderShopDto.setTransfee(order.getFreightAmount());
+        orderShopDto.setReduceAmount(Arith.sub(Arith.add(order.getTotal(), order.getFreightAmount()), order.getActualTotal()));
         orderShopDto.setUserAddrDto(userAddrDto);
         orderShopDto.setOrderItemDtos(orderItemList);
-        orderShopDto.setTransfee(order.getFreightAmount());
-        orderShopDto.setReduceAmount(order.getReduceAmount());
-        orderShopDto.setCreateTime(order.getCreateTime());
-        orderShopDto.setRemarks(order.getRemarks());
-        orderShopDto.setStatus(order.getStatus());
 
-        double total = 0.0;
         Integer totalNum = 0;
-        for (OrderItemDto orderItem : orderShopDto.getOrderItemDtos()) {
-            total = Arith.add(total, orderItem.getProductTotalAmount());
+        for (OrderItem orderItem : orderItems) {
             totalNum += orderItem.getProdCount();
         }
-        orderShopDto.setTotal(total);
         orderShopDto.setTotalNum(totalNum);
 
         return ServerResponseEntity.success(orderShopDto);
@@ -195,7 +197,9 @@ public class MyOrderController {
         if (!Objects.equals(order.getUserId(), userId)) {
             throw new YamiShopBindException("你没有权限获取该订单信息");
         }
-        if (!Objects.equals(order.getStatus(), OrderStatus.SUCCESS.value()) && !Objects.equals(order.getStatus(), OrderStatus.CLOSE.value())) {
+        if (!Objects.equals(order.getStatus(), OrderStatus.CONFIRM.value())
+                && !Objects.equals(order.getStatus(), OrderStatus.SUCCESS.value())
+                && !Objects.equals(order.getStatus(), OrderStatus.CLOSE.value())) {
             throw new YamiShopBindException("订单未完成或未关闭，无法删除订单");
         }
 

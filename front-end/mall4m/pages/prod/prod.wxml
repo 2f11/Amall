@@ -47,6 +47,24 @@
     <view class="sku-con">{{selectedProp.length>0?selectedProp+'，':selectedProp}}{{prodNum}}件</view>
     <view class="more">...</view>
   </view>
+
+  <view class="comment" bindtap="showComment">
+    <view class="comment-hd">
+      <text class="comment-title">评论</text>
+      <text class="comment-meta">{{prodCommData.number||0}}条</text>
+      <text class="comment-meta">好评率{{prodCommData.positiveRating||0}}%</text>
+      <text class="comment-more">查看</text>
+    </view>
+    <view class="comment-bd">
+      <block wx:for="{{prodCommPage.records}}" wx:key="prodCommId">
+        <view class="comment-item">
+          <view class="comment-user">{{item.nickName?item.nickName:'匿名用户'}}</view>
+          <view class="comment-content">{{item.content}}</view>
+        </view>
+      </block>
+      <view wx:if="{{!prodCommPage.records || prodCommPage.records.length==0}}" class="comment-empty">暂无评论</view>
+    </view>
+  </view>
   <!-- 商品详情 -->
   <view class="prod-detail">
     <view>
@@ -136,6 +154,24 @@
       <view class='pup-sku-footer {{findSku?"":"gray"}}'>
         <view class="btn cart" bindtap='addToCart'>加入购物车</view>
         <view class="btn buy" bindtap='buyNow'>立即购买</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="popup-hide" wx:if="{{commentShow}}">
+    <view class="popup-box">
+      <view class="popup-tit">
+        <text>评论</text>
+        <text class="close" bindtap="closePopup"></text>
+      </view>
+      <view class="popup-cnt">
+        <block wx:for="{{prodCommPage.records}}" wx:key="prodCommId">
+          <view class="comment-item">
+            <view class="comment-user">{{item.nickName?item.nickName:'匿名用户'}}</view>
+            <view class="comment-content">{{item.content}}</view>
+          </view>
+        </block>
+        <view wx:if="{{!prodCommPage.records || prodCommPage.records.length==0}}" class="comment-empty">暂无评论</view>
       </view>
     </view>
   </view>
