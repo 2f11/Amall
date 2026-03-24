@@ -1,0 +1,48 @@
+<view class="container">
+  <view class="order-num">
+    <text>订单号：{{orderNumber}}</text>
+  </view>
+
+  <view class="item-list">
+    <block wx:for="{{items}}" wx:key="orderItemId">
+      <view class="item">
+        <view class="item-left">
+          <image class="pic" src="{{item.pic}}"></image>
+        </view>
+        <view class="item-right">
+          <view class="name">{{item.prodName}}</view>
+          <view class="sku">{{item.skuName}}</view>
+          <view class="status">{{item.commSts==1?'已评价':'待评价'}}</view>
+          <view class="actions">
+            <button class="btn" size="mini" wx:if="{{item.commSts==0}}" data-index="{{index}}" bindtap="startComm">去评价</button>
+            <button class="btn gray" size="mini" wx:if="{{item.commSts==1}}" disabled>已评价</button>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="form" wx:if="{{editing}}">
+    <view class="form-title">评价商品</view>
+
+    <view class="field">
+      <text class="label">评分</text>
+      <slider min="0" max="5" step="1" value="{{score}}" show-value bindchange="onScoreChange"></slider>
+    </view>
+
+    <view class="field">
+      <text class="label">内容</text>
+      <textarea class="textarea" maxlength="500" placeholder="说说你的使用感受" value="{{content}}" bindinput="onContentInput"></textarea>
+    </view>
+
+    <view class="field">
+      <text class="label">匿名</text>
+      <switch checked="{{isAnonymous==1}}" bindchange="onAnonymousChange"></switch>
+    </view>
+
+    <view class="btn-row">
+      <button class="btn gray" bindtap="cancelComm">取消</button>
+      <button class="btn primary" bindtap="submitComm" loading="{{submitting}}">提交</button>
+    </view>
+  </view>
+</view>
